@@ -17,6 +17,7 @@ public class Scene3 : MonoBehaviour
 
     private Animator JamshidAnimator;
     private bool JamshidWork = false;
+    private bool JamshidArrive;
 
     [SerializeField] private GameObject Converstion;
 
@@ -33,6 +34,8 @@ public class Scene3 : MonoBehaviour
     public GameObject Interaction_KasiNist;
     public GameObject Bell;
 
+    private bool CanRingBell = true;
+
     void Start()
     {
         #region Steps
@@ -44,14 +47,14 @@ public class Scene3 : MonoBehaviour
 
         if(_step.Steps[7] && !_step.Steps[10])
         {
-            JamshidAnimator.SetBool("Walk", false);
+            JamshidAnimator.Play("Jamshid_Idle");
             _Jamshid.transform.position = JamshidPosTarget.position;
             AllLightOff();
         }
 
         if(_step.Steps[10])
         {
-            JamshidAnimator.SetBool("Walk", false);
+            JamshidAnimator.Play("Jamshid_Idle");
             _Jamshid.transform.position = JamshidPosTarget.position;
         }
 
@@ -83,12 +86,16 @@ public class Scene3 : MonoBehaviour
                 _Jamshid.transform.position = Vector3.MoveTowards(_Jamshid.transform.position,
                     JamshidPosTarget.position, JamshidSpeed * Time.fixedDeltaTime);
             }
+
+
             if (_Jamshid.transform.position == JamshidPosTarget.position &&
-                JamshidAnimator.GetBool("Walk"))
+                !JamshidArrive)
             {
 
-                JamshidAnimator.SetBool("Walk", false);
+                JamshidAnimator.Play("Jamshid_Idle");
                 Converstion.GetComponent<DialogueInteraction>().OnDialogueStarted(_Player);
+                JamshidArrive = true;
+
             }
         }
     }
@@ -97,18 +104,26 @@ public class Scene3 : MonoBehaviour
     {
         if(!_step.Steps[7])
         {
-            ringBellPlayer.Play();
-
-            RingTheBellTime++;
-
-            if (RingTheBellTime == 2)
+            if (CanRingBell)
             {
-                MarginOpen();
-                JamshidWork = true;
-                Interaction_KasiNist.SetActive(false);
-                Bell.SetActive(false);
+                CanRingBell = false;
+                Invoke("CanRingAgain", 1f);
+                ringBellPlayer.Play();
+                RingTheBellTime++;
+                if (RingTheBellTime == 2)
+                {
+                    MarginOpen();
+                    JamshidWork = true;
+                    Interaction_KasiNist.SetActive(false);
+                    Bell.SetActive(false);
+                }
             }
         }
+    }
+
+    private void CanRingAgain ()
+    {
+        CanRingBell = true;
     }
 
     public void CheckTouch (string name)

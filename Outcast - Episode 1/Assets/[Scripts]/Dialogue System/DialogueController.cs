@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class DialogueController : MonoBehaviour
 {
+    
+
     public ConversationObject introConversation;
     public ConversationObject mainConversation;
     public ConversationObject exitConversation;
@@ -14,7 +16,6 @@ public class DialogueController : MonoBehaviour
 
     public GameObject ChoicePrefab;
 
-  
 
     public Text DialogueText;
 
@@ -44,6 +45,8 @@ public class DialogueController : MonoBehaviour
     private string CameraGoTo;
     private string CameraIn;
     [SerializeField] private GameObject [] characters;
+    private Animator [] charactersAnimator = new Animator[2];
+
     // artan
 
     [SerializeField] private GameObject _Manger;
@@ -53,17 +56,26 @@ public class DialogueController : MonoBehaviour
     [SerializeField] private ConversationObject jamshid1;
     [SerializeField] private ConversationObject jamshid2;
 
+    private CharacterController2D characterController2d;
 
 
-    // Start is called before the first frame update
-    void Start()
+
+
+    private void Awake()
     {
         _step = GameObject.FindObjectOfType<Step>();
+        characterController2d = GameObject.FindObjectOfType<CharacterController2D>();
+    }
+    void Start()
+    {
 
+
+        charactersAnimator[0] = characters[0]. transform.parent.GetComponent<Animator>();
+        charactersAnimator[1] = characters[1].transform.parent.GetComponent<Animator>();
 
         #region dialog
 
-        if(SceneManager.GetActiveScene().name == "Scene 3 FF")
+        if (SceneManager.GetActiveScene().name == "Scene 3 FF")
         {
 
             if (!_step.Steps[7])
@@ -221,7 +233,7 @@ public class DialogueController : MonoBehaviour
             CameraGoTo = "Lida";
         }
 
-  
+
         if (conversation.lines.Length > lineIndex && !uncheckedLines.Contains(lineIndex))
         {
             DialogueText.text = conversation.lines[lineIndex].text;
@@ -274,16 +286,58 @@ public class DialogueController : MonoBehaviour
         }
 
 
-        if (lineIndex == 8 && introConversation == jamshid1)
+        if(lineIndex == 0)
         {
-            _Manger.GetComponent<Scene3>().AllLightOff();
-            for (int i = 0; i < transform.childCount; i++)
+            if(characters[0].transform.position.x > characters[1].transform.position.x)
             {
-                transform.GetChild(i).gameObject.SetActive(false);
+                if (characterController2d.IsFacingRight())
+                    characterController2d.Flip();
             }
-            StartCoroutine(WaitForNextDialog(2f));
-            return;
+            else
+            {
+                if (!characterController2d.IsFacingRight())
+                    characterController2d.Flip();
+            }
         }
+
+
+        #region Special
+
+
+
+
+        if (introConversation.name == "jamshid1")
+        {
+            if(lineIndex == 8)
+            {
+                _Manger.GetComponent<Scene3>().AllLightOff();
+                for (int i = 0; i < transform.childCount; i++)
+                {
+                    transform.GetChild(i).gameObject.SetActive(false);
+                }
+                StartCoroutine(WaitForNextDialog(2f));
+                return;
+            }
+
+            if (lineIndex == 1)
+            {
+                charactersAnimator[1].Play("Artan_Idle_Anim_Usef(Edit)");
+            }
+
+            if(lineIndex == 9)
+            {
+                charactersAnimator[0].Play("Artan_LookUp");
+                charactersAnimator[1].Play("Artan_HeadMovement");
+            }
+
+            if(lineIndex == 10)
+            {
+                charactersAnimator[0].Play("Idle");
+            }
+
+        }
+
+        #endregion
     }
 
     bool CheckConditions(Choice choice)

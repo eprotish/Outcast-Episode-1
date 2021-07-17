@@ -7,24 +7,27 @@ public class drag_drop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
     [SerializeField] private Canvas _can;
     private Vector2 _orgin_pos;
     private RectTransform _rec;
-    private InventoryManger _player;
+    private InventoryManger inventorymanger;
 
     private void Awake()
     {
         _rec = GetComponent<RectTransform>();
         _orgin_pos = _rec.anchoredPosition;
-        _player = GameObject.FindObjectOfType<InventoryManger>();
+        inventorymanger = GameObject.FindObjectOfType<InventoryManger>();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        _player.GetComponent<InventoryManger>().item_drag_name = this.name;
+        inventorymanger.item_drag_name = this.name;
         transform.parent.transform.SetAsLastSibling();
+
+        GetComponent<Image>().raycastTarget = false;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
         _rec.anchoredPosition = _orgin_pos;
+        GetComponent<Image>().raycastTarget = true;
     }
 
     public void OnDrag(PointerEventData eventData)

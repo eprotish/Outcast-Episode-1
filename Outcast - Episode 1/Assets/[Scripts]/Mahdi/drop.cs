@@ -2,23 +2,44 @@
 using UnityEngine.EventSystems;
 
 
-public class drop : MonoBehaviour, IDropHandler
+public class drop : MonoBehaviour, IPointerEnterHandler , IPointerExitHandler 
 {
+
     private InventoryManger manger;
+    private bool In;
 
     private void Start()
     {
         manger = GameObject.FindObjectOfType<InventoryManger>();
     }
 
-
-    void IDropHandler.OnDrop(PointerEventData eventData)
+    void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
     {
-        manger.transform.GetChild(0).GetChild(5).SetAsFirstSibling();
 
-        manger.GetComponent<InventoryManger>().TryToCombin(this.name);
+            In = true;
+            manger.item_drop_name = this.name;
 
-        manger.GetComponent<InventoryManger>().item_drag_name = "";
-        manger.GetComponent<InventoryManger>().item_drop_name = "";
+    }
+
+    void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
+    {
+        if (In)
+            In = false;
+
+        manger.item_drop_name = "";
+    }
+
+
+    private void Update()
+    {
+        if(Input.GetMouseButtonUp(0) && In)
+        {
+            manger.transform.GetChild(0).GetChild(5).SetAsFirstSibling();
+
+            manger.TryToCombin(this.name);
+
+            manger.item_drag_name = "";
+            manger.item_drop_name = "";
+        }
     }
 }

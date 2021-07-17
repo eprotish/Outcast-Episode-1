@@ -13,7 +13,6 @@ public class Scene3SF : MonoBehaviour
     private Step _step;
     [SerializeField] private GameObject Lida;
     [SerializeField] private GameObject DoorRoom4VIP;
-    [SerializeField] private GameObject InteractionLida;
     [SerializeField] private Animator Margin;
     [SerializeField] private GameObject moveHolder;
     [SerializeField] private GameObject Artan;
@@ -31,6 +30,7 @@ public class Scene3SF : MonoBehaviour
     [SerializeField] private GameObject Door4Interaction;
     [SerializeField] private GameObject WearInteraction;
     [SerializeField] private GameObject ColliderBeforeWear;
+    [SerializeField] private GameObject TriggerDialog;
 
     [SerializeField] private Animator PanelFade;
 
@@ -62,7 +62,7 @@ public class Scene3SF : MonoBehaviour
         if(_step.Steps[37] && !_step.Steps[38])
         {
             Lida.SetActive(true);
-            InteractionLida.SetActive(true);
+            TriggerDialog.SetActive(true);
         }
 
         if(_step.Steps[38])
@@ -77,6 +77,14 @@ public class Scene3SF : MonoBehaviour
         }
 
         #endregion
+    }
+
+    public void CheckTrigger (string a)
+    {
+        if(a == "TriggerDialog")
+        {
+            MarginOpen();
+        }
     }
 
     public void CheckTouch(string a)

@@ -51,6 +51,8 @@ public class PlayerMovement : MonoBehaviour
         timeEnergy = TimeCanRun;
         moveMode = MoveMode.idle;
 
+        animator.Play("Idle");
+
         if (audioSource == null)
             audioSource = GetComponent<AudioSource>();
     }
@@ -85,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        animator.SetFloat("Speed", Mathf.Abs(horizontalMove));       
+       // animator.SetFloat("Speed", Mathf.Abs(horizontalMove));       
     }
 
     void FixedUpdate ()
@@ -93,18 +95,22 @@ public class PlayerMovement : MonoBehaviour
         // for pc
         if (Input.GetKeyDown(KeyCode.LeftShift) && moveMode != MoveMode.noEnergy)
         {
-            if(SceneManager.GetActiveScene().buildIndex == 1)
+            if(SceneManager.GetActiveScene().name == "Scene2")
             {
                 _Tutorail.GetComponent<Tutorail>().TutorailShowOff(2);
             }
             moveMode = MoveMode.run;
-            animator.SetBool("Run",true);
+            //animator.SetBool("Run",true);
+            animator.Play("Artan_Runing_Anim_Usef(Edit_3)");
+            
         }
  
         if (Input.GetKeyUp(KeyCode.LeftShift) && moveMode != MoveMode.noEnergy)
         {
             moveMode = MoveMode.walk;
-            animator.SetBool("Run",false);
+            //animator.SetBool("Run",false);
+            if(horizontalMove != 0)
+                animator.Play("Artan_Walking");
         }
 
         StateChecker();    
@@ -139,8 +145,12 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                animator.SetBool("NoEnergy", true);
+
+                //animator.SetBool("NoEnergy", true);
                 moveMode = MoveMode.noEnergy;
+
+                animator.Play("Artan_Breathing&Tiring_Anim_Usef(Edit)");
+
                 timeRest = TimeRest;
                 timeEnergy = 0.5f;
 
@@ -158,8 +168,10 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 horizontalMove = 0;
-                animator.SetBool("Run", false);
-                animator.SetBool("NoEnergy", false);
+                // animator.SetBool("Run", false);
+                // animator.SetBool("NoEnergy", false);
+                animator.Play("Idle");
+
                 moveMode = MoveMode.idle;
             }
         }
@@ -177,6 +189,8 @@ public class PlayerMovement : MonoBehaviour
             moveMode = MoveMode.walk;
             horizontalMove = 1;
 
+            animator.Play("Artan_Walking");
+
             SoundPlayer();
         }
 
@@ -192,6 +206,8 @@ public class PlayerMovement : MonoBehaviour
             moveMode = MoveMode.walk;
             horizontalMove = -1;
 
+            animator.Play("Artan_Walking");
+
             SoundPlayer();
         }
     }
@@ -204,16 +220,20 @@ public class PlayerMovement : MonoBehaviour
         if (moveMode != MoveMode.noEnergy)
         {     
             moveMode = MoveMode.idle;
+
+            animator.Play("Idle");
+
             horizontalMove = 0;
         }
     }
 
     public void Run()
     {
-        if (moveMode != MoveMode.noEnergy)
+        if (moveMode == MoveMode.walk)
         {
             moveMode = MoveMode.run;
-            animator.SetBool("Run",true);
+            // animator.SetBool("Run",true);
+            animator.Play("Artan_runing_Anim_Usef(Edit_3)");
             SoundPlayer();
         }
     }
@@ -223,7 +243,9 @@ public class PlayerMovement : MonoBehaviour
         if (moveMode != MoveMode.noEnergy)
         {
             moveMode = MoveMode.walk;
-            animator.SetBool("Run",false);
+            //  animator.SetBool("Run",false);
+            if (horizontalMove != 0)
+                animator.Play("Artan_Walking");
         }
 
 

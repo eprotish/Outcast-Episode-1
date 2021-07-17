@@ -27,6 +27,9 @@ public class Trigger : MonoBehaviour
 
         if(SceneName == "Scene 3-1 FF - Dream")
             Controller.GetComponent<Scene3Dream>().CheckTrigger(this.name);
+
+        if(SceneName == "Scene 3 SF")
+            Controller.GetComponent<Scene3SF>().CheckTrigger(this.name);
     }
 
     private void OnTriggerExit2D(Collider2D hit)

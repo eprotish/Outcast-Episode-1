@@ -44,7 +44,7 @@ public class InventoryManger : MonoBehaviour
     [SerializeField] private Documents[] AllDocument;
     [SerializeField] private AudioSource audioSource;
 
-    private GameData gamedata;
+    private GameDataController gamedata;
 
     private bool isFront = true;
     private bool isChangeImage = true;
@@ -59,10 +59,18 @@ public class InventoryManger : MonoBehaviour
     GameObject DestroyItem;
     Step _step;
 
+    private GameObject inventoryBtnObj;
+
+    private Animator moveHolder;
+
     private void Start()
     {
         _step = GameObject.FindObjectOfType<Step>();
-        gamedata = GameObject.FindObjectOfType<GameData>();
+        gamedata = GameObject.FindObjectOfType<GameDataController>();
+
+        inventoryBtnObj = GameObject.Find("Inventorybtn");
+
+        moveHolder = GameObject.Find("Move Holder - New").GetComponent<Animator>();
     }
 
     public void AddItem (string itemName,Sprite itemImage)
@@ -234,12 +242,13 @@ public class InventoryManger : MonoBehaviour
             GameObject.FindObjectOfType<Step>().DoWork(9);
             GameObject.FindObjectOfType<Scene2>().FuseCheck();
 
-            
-
             Invoke("CloseInventoryByDelay", 0.5f);
         }
+
         else if (item_drag_name == "Tape" && item_drop_name == "BookR")
         {
+
+
             RemoveItem("Tape");
             RemoveItem("BookR");
             AddDocument(AllDocument[0].ImageDocument, AllDocument[0].BackDoc, AllDocument[0].nameDocument, AllDocument[0].ShortInfo, AllDocument[0].infoDocument, null);
@@ -247,16 +256,18 @@ public class InventoryManger : MonoBehaviour
             Invoke("CloseInventoryByDelay", 0.5f);
 
         }
-
 
         if (item_drag_name == "BookR" && item_drop_name == "Tape")
         {
+
             RemoveItem("Tape");
             RemoveItem("BookR");
             AddDocument(AllDocument[0].ImageDocument, AllDocument[0].BackDoc, AllDocument[0].nameDocument, AllDocument[0].ShortInfo, AllDocument[0].infoDocument, null);
 
             Invoke("CloseInventoryByDelay", 0.5f);
         }
+
+
 
 
         #endregion
@@ -303,7 +314,9 @@ public class InventoryManger : MonoBehaviour
             QuickInventory.SetActive(false);
             InfoButton.SetActive(false);
 
-            gamedata.isOnCanvas = false;
+            gamedata.gameData.isOnCanvas = false;
+
+            moveHolder.Play("MoveHolderAnimationOff");
         }
         else
         {
@@ -311,7 +324,9 @@ public class InventoryManger : MonoBehaviour
             InfoButton.SetActive(true);
             info.SetActive(false);
 
-            gamedata.isOnCanvas = true;
+            gamedata.gameData.isOnCanvas = true;
+
+            moveHolder.Play("MoveHolderAnimation");
         }
     }
     
@@ -331,6 +346,8 @@ public class InventoryManger : MonoBehaviour
     public void Read ()
     {
         QI_Read.SetActive(true);
+        inventoryBtnObj.SetActive(false);
+        
     }
 
     public void Flip ()
@@ -350,6 +367,7 @@ public class InventoryManger : MonoBehaviour
     public void CloseRead ()
     {
         QI_Read.SetActive(false);
+        inventoryBtnObj.SetActive(true);
     }
     public void nextBtn()
     {
@@ -467,7 +485,7 @@ public class InventoryManger : MonoBehaviour
         QuickInventory.SetActive(false);
         InfoButton.SetActive(false);
 
-        gamedata.isOnCanvas = false;
+        gamedata.gameData.isOnCanvas = false;
         
     }
 }
