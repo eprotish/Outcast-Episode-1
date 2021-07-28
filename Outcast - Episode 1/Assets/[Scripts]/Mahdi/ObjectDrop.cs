@@ -123,14 +123,12 @@ public class ObjectDrop : MonoBehaviour
         */
     }
 
-
     private void Soundplayer (AudioClip _clip , float _volume)
     {
         audiosource.clip = _clip;
         audiosource.volume = _volume;
         audiosource.Play();
     }
-
 
     private void OnMouseEnter()
     {
@@ -142,6 +140,10 @@ public class ObjectDrop : MonoBehaviour
             GreenCircle.SetActive(true);
             In = 2;
         }
+         else if (_inventoryManger.item_drag_name.Equals("") || _inventoryManger.item_drag_name.Equals("null"))
+         {
+             // Null
+         }
         else
         {
             // Red

@@ -247,10 +247,16 @@ public class Scene3Dream : MonoBehaviour
 
     public void T_Touch ()
     {
+        if(!_step.Steps[19]) {
+
         Circle.SetActive(true);
+        Circle.GetComponent<Animator>().Play("T_MissPanel_anim");
         PlaySound(Sound_t, volume2);
         _step.DoWork(19);
         FindObjectOfType<GameDataController>().gameData.SetGameEventAsFinished("LightningIfTTouched");
+
+        }
+
     }
 
     private void LightCoffeeShopOff ()

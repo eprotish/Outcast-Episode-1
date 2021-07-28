@@ -220,10 +220,9 @@ public class PlayerMovement : MonoBehaviour
         if (moveMode != MoveMode.noEnergy)
         {     
             moveMode = MoveMode.idle;
-
             animator.Play("Idle");
-
             horizontalMove = 0;
+            SoundPlayer();
         }
     }
 
@@ -233,7 +232,7 @@ public class PlayerMovement : MonoBehaviour
         {
             moveMode = MoveMode.run;
             // animator.SetBool("Run",true);
-            animator.Play("Artan_runing_Anim_Usef(Edit_3)");
+            animator.Play("Artan_Runing_Anim_Usef(Edit_3)");
             SoundPlayer();
         }
     }

@@ -21,8 +21,11 @@ public class Tutorail : MonoBehaviour
 
     private void PauseGame ()
     {
-        rb.bodyType = RigidbodyType2D.Static;
-        Time.timeScale = 0;
+        if(TutorailPanel.activeInHierarchy)
+        {
+            rb.bodyType = RigidbodyType2D.Static;
+            Time.timeScale = 0;
+        }
     }
 
     private void UnPauseGame()

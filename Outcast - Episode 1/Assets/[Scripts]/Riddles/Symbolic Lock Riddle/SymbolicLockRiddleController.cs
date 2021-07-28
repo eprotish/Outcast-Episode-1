@@ -31,7 +31,7 @@ public class SymbolicLockRiddleController : MonoBehaviour
 
     void Start()
     {
-         if(GameObject.FindObjectOfType<Step>().Steps[27])
+        if(GameObject.FindObjectOfType<Step>().Steps[27])
         {
             SafeInteraction.SetActive(true);
         }
@@ -51,9 +51,14 @@ public class SymbolicLockRiddleController : MonoBehaviour
             SafeInteraction.SetActive(true);
         }
 
-        //fellan
+        //
         if (Input.GetKeyDown(KeyCode.Space))
-            isCorrect = true;
+            Test();
+    }
+
+    public  void Test ()
+    {
+        isCorrect = true;
     }
 
 

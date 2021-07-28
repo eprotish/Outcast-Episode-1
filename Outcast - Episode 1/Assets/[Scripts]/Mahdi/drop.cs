@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 
@@ -15,10 +15,8 @@ public class drop : MonoBehaviour, IPointerEnterHandler , IPointerExitHandler
 
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
     {
-
             In = true;
             manger.item_drop_name = this.name;
-
     }
 
     void IPointerExitHandler.OnPointerExit(PointerEventData eventData)

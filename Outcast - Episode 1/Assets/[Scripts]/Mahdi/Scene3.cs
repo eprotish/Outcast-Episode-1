@@ -4,6 +4,7 @@ using UnityEngine.Experimental.Rendering.Universal;
 public class Scene3 : MonoBehaviour
 {
 
+    [SerializeField] private AudioSource SoundLightOff;
     [SerializeField] private AudioSource ringBellPlayer;
 
     private int RingTheBellTime;
@@ -29,6 +30,8 @@ public class Scene3 : MonoBehaviour
     private Step _step;
 
     [SerializeField] private Sprite _keyArtanRoom;
+    [SerializeField] private GameObject Panel_NewItem;
+
 
     public GameObject LoadSceneSF;
     public GameObject Interaction_KasiNist;
@@ -141,6 +144,10 @@ public class Scene3 : MonoBehaviour
         }
     }
 
+    public void LightOffSound () {
+
+        SoundLightOff.Play();
+    }
 
     public void MarginOpen ()
     {
@@ -156,6 +163,7 @@ public class Scene3 : MonoBehaviour
         {
             LoadSceneSF.SetActive(true);
             GameObject.FindObjectOfType<InventoryManger>().AddItem("KeyArtanRoom", _keyArtanRoom);
+            Panel_NewItem.SetActive(true);
             _step.DoWork(11);
         }
 

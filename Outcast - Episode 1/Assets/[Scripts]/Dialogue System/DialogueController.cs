@@ -303,9 +303,6 @@ public class DialogueController : MonoBehaviour
 
         #region Special
 
-
-
-
         if (introConversation.name == "jamshid1")
         {
             if(lineIndex == 8)
@@ -316,18 +313,14 @@ public class DialogueController : MonoBehaviour
                     transform.GetChild(i).gameObject.SetActive(false);
                 }
                 StartCoroutine(WaitForNextDialog(2f));
-                return;
-            }
 
-            if (lineIndex == 1)
-            {
-                charactersAnimator[1].Play("Artan_Idle_Anim_Usef(Edit)");
-            }
-
-            if(lineIndex == 9)
-            {
                 charactersAnimator[0].Play("Artan_LookUp");
                 charactersAnimator[1].Play("Artan_HeadMovement");
+            }
+
+            if (lineIndex == 2)
+            {
+                charactersAnimator[1].Play("Artan_Idel_Anim_Usef(Edit)");
             }
 
             if(lineIndex == 10)

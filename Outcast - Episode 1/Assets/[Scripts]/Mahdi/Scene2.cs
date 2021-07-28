@@ -32,6 +32,8 @@ public class Scene2 : MonoBehaviour
     [SerializeField] private AudioClip SoundCarEngine;
     [SerializeField] [Range(0, 1)] private float VolumeCarEngine = 0.5f;
 
+    [SerializeField] private AudioClip SoundLightOff;
+    [SerializeField] [Range(0,1)] private float VolumeLightOff;
 
     private bool DoTouch;
 
@@ -58,6 +60,9 @@ public class Scene2 : MonoBehaviour
     [SerializeField] private GameObject [] fuseBoxObjs;
     [SerializeField] private Sprite greenLight;
     [SerializeField] private GameObject fuse2Item;
+    [SerializeField] private GameObject WindowLight;
+    [SerializeField] private GameObject LightZargMotel;
+    [SerializeField] private GameObject LightMotel2;
 
 
     [SerializeField] private GameObject Lida;
@@ -324,6 +329,8 @@ public class Scene2 : MonoBehaviour
             PlaySound(SoundFuseButton, false, VolumeFuseButton);
 
             _step.DoWork(10);
+
+            PlaySound(SoundLightOff,false,VolumeLightOff);
             FindObjectOfType<GameDataController>().gameData.SetGameEventAsFinished("TurnOnElectricity");
             StartCoroutine(waitToClose(0.5f));
            StartCoroutine(waitToLightCome(1f));
@@ -460,6 +467,9 @@ public class Scene2 : MonoBehaviour
                _lights[i].intensity = 0f;
         }
 
+        WindowLight.SetActive(false);
+        LightZargMotel.SetActive(false);
+        LightMotel2.SetActive(false);
         MainLight.intensity = 0.2f;
     }
 
@@ -470,6 +480,10 @@ public class Scene2 : MonoBehaviour
             if (_lights[i] != null)
                 _lights[i].intensity = IntensityValues[i];
         }
+
+        WindowLight.SetActive(true);
+        LightZargMotel.SetActive(true);
+        LightMotel2.SetActive(true);
 
         MainLight.intensity = 0.5f;
     } 
