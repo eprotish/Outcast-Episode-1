@@ -485,8 +485,9 @@ public class InventoryManger : MonoBehaviour
         QuickInventory.SetActive(false);
         InfoButton.SetActive(false);
 
-        gamedata.gameData.isOnCanvas = false;
-        
+        moveHolder.Play("MoveHolderAnimation");
+
+        gamedata.gameData.isOnCanvas = false;       
     }
 }
 

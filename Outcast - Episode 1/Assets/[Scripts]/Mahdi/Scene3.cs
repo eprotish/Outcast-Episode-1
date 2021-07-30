@@ -68,6 +68,7 @@ public class Scene3 : MonoBehaviour
 
         if(_step.Steps[11])
         {
+            _Jamshid.GetComponent<InteractionController>().enabled = false;
             LoadSceneSF.SetActive(true);
         }
 
@@ -136,7 +137,7 @@ public class Scene3 : MonoBehaviour
             RingTheBell();
         }
 
-        if(name == "JamshidMH" && _step.Steps[10])
+        if(name == "JamshidMH" && _step.Steps[10] && !_step.Steps[11])
         {
             MarginOpen();
             JamshidWork = true;
