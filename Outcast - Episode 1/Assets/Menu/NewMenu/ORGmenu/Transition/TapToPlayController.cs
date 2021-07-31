@@ -11,9 +11,9 @@ public class TapToPlayController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ttp.SetActive(false);
-        ttpWhole.enabled = false;
-        StartCoroutine(ShowTTP());
+       // ttp.SetActive(false);
+      //  ttpWhole.enabled = false;
+       // StartCoroutine(ShowTTP());
     }
 
     // Update is called once per frame
@@ -25,7 +25,7 @@ public class TapToPlayController : MonoBehaviour
     IEnumerator ShowTTP()
     {
         yield return new WaitForSeconds(ttpDelayTime);
-        ttp.SetActive(true);
-        ttpWhole.enabled = true;
+       // ttp.SetActive(true);
+       // ttpWhole.enabled = true;
     }
 }

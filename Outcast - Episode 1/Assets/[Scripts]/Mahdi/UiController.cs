@@ -7,14 +7,14 @@ public class UiController : MonoBehaviour
     private Animator btnInventoryAnimator;
     private Animator moveholderAnimator;
 
-  
-    private void Start()
+    private void Awake()
     {
        // DontDestroyOnLoad(gameObject);
 
         inventoryAnimator = GameObject.Find("Inventory").GetComponent<Animator>();
         btnInventoryAnimator = GameObject.Find("Inventorybtn").GetComponent<Animator>();
         moveholderAnimator = GameObject.Find("Move Holder - New").GetComponent<Animator>();
+
     }
 
     private void OnLevelWasLoaded()

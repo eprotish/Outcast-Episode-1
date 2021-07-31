@@ -25,8 +25,8 @@ public class PlayerMovement : MonoBehaviour
 
     private Step _step;
 
-    private bool CantMoveRight = false;
-    private bool CantMoveLeft = false;
+    [HideInInspector] public bool CantMoveRight = false;
+    [HideInInspector] public bool CantMoveLeft = false;
 
     public AudioSource audioSource;
     public AudioClip[] MoveSounds;
@@ -37,7 +37,14 @@ public class PlayerMovement : MonoBehaviour
     private int SoundIn;
 
     [HideInInspector] public bool InInteratcion; 
+    private MoveHolderController moveHolderController;
 
+
+
+    void Awake()
+    {
+        moveHolderController = GameObject.FindObjectOfType<MoveHolderController>();
+    }
     void Start()
     {
         _step = GameObject.FindObjectOfType<Step>();
@@ -72,9 +79,11 @@ public class PlayerMovement : MonoBehaviour
             CantMoveLeft = true;
         }
 
+        moveHolderController.HideRunButton();
+
         if (moveMode == MoveMode.run)
             RunStop();
-
+            
            Stop();
 
     }

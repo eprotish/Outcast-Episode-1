@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class Scene4VIP : MonoBehaviour
 {
     [SerializeField] private AudioSource KnockKnockPlayer;
-    [SerializeField] private float TimeKnockKnock = 5f;
+    [SerializeField] private float [] TimeKnockKnock;
 
     [SerializeField] private GameObject Interactio_Sleep;
 
@@ -84,7 +85,9 @@ public class Scene4VIP : MonoBehaviour
         yield return new WaitForSeconds(wait);
         KnockKnockPlayer.Play();
 
-        StartCoroutine(KnockKnockLoop(TimeKnockKnock));
+
+        float ran = UnityEngine.Random.Range(TimeKnockKnock[0],TimeKnockKnock[1]);
+        StartCoroutine(KnockKnockLoop(ran));
     }
 
     IEnumerator ArtanTalkHimself (float wait)

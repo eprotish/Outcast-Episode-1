@@ -6,17 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class DialogueController : MonoBehaviour
 {
-    
-
     public ConversationObject introConversation;
     public ConversationObject mainConversation;
     public ConversationObject exitConversation;
 
     public ConversationObject conversation;
-
-    public GameObject ChoicePrefab;
-
-
     public Text DialogueText;
 
     public int lineIndex = 0;
@@ -24,13 +18,7 @@ public class DialogueController : MonoBehaviour
     public Button next;
 
     public List<int> uncheckedLines = new List<int>();
-
-
     public string currentLineName;
-
-    public Sprite BlackSprite;
-    public Sprite RedSprite;
-
     DialogueInteraction dialogueInteraction;
 
     int conversationIndex = 0;
@@ -41,14 +29,12 @@ public class DialogueController : MonoBehaviour
     [SerializeField] private float MaxCameraZoom = 1.75f;
     [SerializeField] private float SpeedZoomCamera;
        
-
     private string CameraGoTo;
     private string CameraIn;
     [SerializeField] private GameObject [] characters;
-    private Animator [] charactersAnimator = new Animator[2];
+    public Animator [] charactersAnimator = new Animator[2];
 
     // artan
-
     [SerializeField] private GameObject _Manger;
     private Step _step;
 
@@ -58,9 +44,6 @@ public class DialogueController : MonoBehaviour
 
     private CharacterController2D characterController2d;
 
-
-
-
     private void Awake()
     {
         _step = GameObject.FindObjectOfType<Step>();
@@ -68,10 +51,6 @@ public class DialogueController : MonoBehaviour
     }
     void Start()
     {
-
-
-        charactersAnimator[0] = characters[0]. transform.parent.GetComponent<Animator>();
-        charactersAnimator[1] = characters[1].transform.parent.GetComponent<Animator>();
 
         #region dialog
 
@@ -111,7 +90,6 @@ public class DialogueController : MonoBehaviour
        
         conversation = introConversation;
         lineIndex = -1;
-        UpdateName();
         NextLine();
        
     }
@@ -119,37 +97,31 @@ public class DialogueController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, MaxCameraZoom, SpeedZoomCamera * Time.fixedDeltaTime);
+        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, MaxCameraZoom, SpeedZoomCamera * Time.deltaTime);
+
         if(CameraGoTo != CameraIn)
         {
-            if (cam.transform.position == characters[0].transform.position)
+            if (cam.transform.position == characters[0].transform.position && CameraIn != "Artan")
             {
                 CameraIn = "Artan";
                 return;
             }
 
-            if (cam.transform.position == characters[1].transform.position)
+            if (cam.transform.position == characters[1].transform.position && CameraIn != "Jamshid")
             {
                 CameraIn = "Jamshid";
                 return;
             }
+         
+            if(CameraGoTo.Equals("Artan")) {
 
-
-            if (CameraGoTo == "Artan")
-            {
-                cam.transform.position = Vector3.MoveTowards(cam.transform.position,
+                cam.transform.position =           
+                Vector3.MoveTowards(cam.transform.position,
                     new Vector3(characters[0].transform.position.x , characters[0].transform.position.y,-10),
-                    SpeedCamera * Time.fixedDeltaTime);
+                    SpeedCamera * Time.deltaTime);
             }
 
-            if (CameraGoTo == "Jamshid")
-            {
-                cam.transform.position = Vector3.MoveTowards(cam.transform.position,
-                    new Vector3(characters[1].transform.position.x, characters[1].transform.position.y, -10),
-                    SpeedCamera * Time.fixedDeltaTime);
-            }
-
-            if(CameraGoTo == "Lida")
+            if (CameraGoTo.Equals("Jamshid") || CameraGoTo.Equals("Lida"))
             {
                 cam.transform.position = Vector3.MoveTowards(cam.transform.position,
                    new Vector3(characters[1].transform.position.x, characters[1].transform.position.y, -10),
@@ -170,7 +142,6 @@ public class DialogueController : MonoBehaviour
         lineIndex = -1;
         currentLineName = "";
         uncheckedLines.Clear();
-        UpdateName();
         NextLine();
     }
 
@@ -237,7 +208,6 @@ public class DialogueController : MonoBehaviour
         if (conversation.lines.Length > lineIndex && !uncheckedLines.Contains(lineIndex))
         {
             DialogueText.text = conversation.lines[lineIndex].text;
-            UpdateName();
 
             if (conversation.lines[lineIndex].choices != null && conversation.lines[lineIndex].choices.Length > 0)
             {
@@ -285,7 +255,6 @@ public class DialogueController : MonoBehaviour
                 next.gameObject.SetActive(false);
         }
 
-
         if(lineIndex == 0)
         {
             if(characters[0].transform.position.x > characters[1].transform.position.x)
@@ -299,7 +268,6 @@ public class DialogueController : MonoBehaviour
                     characterController2d.Flip();
             }
         }
-
 
         #region Special
 
@@ -352,21 +320,6 @@ public class DialogueController : MonoBehaviour
             return ok;
         }
         return true;
-    }
-
-    void UpdateName()
-    {
-        /*
-        if (!currentLineName.Equals(conversation.lines[lineIndex].character.fullName))
-        {
-            CharacterImage.sprite = conversation.lines[lineIndex].character.characterIcon;
-            currentLineName = conversation.lines[lineIndex].character.fullName;
-        }
-        characterName.text = currentLineName;
-        */
-
-        //LeftCharacterImage.texture = conversation.leftCharacter.characterRenderTexture;
-        //RightCharacterImage.texture = conversation.rightCharacter.characterRenderTexture;
     }
 
     public void SelectChoice(int lineIndex)

@@ -455,11 +455,15 @@ public class InventoryManger : MonoBehaviour
         NameItemNewShower.text = nameItem;
         SpriteItemNewShower.sprite = spriteItem;
 
+
+         /*
         if (isDoc)
             ShortInfoNewShower.text = Shortinfo;
         else
             ShortInfoNewShower.text = "";
 
+
+        */
         if(!QuickInventory.activeInHierarchy)
         {
             QuickInventory.SetActive(true);
@@ -485,9 +489,7 @@ public class InventoryManger : MonoBehaviour
         QuickInventory.SetActive(false);
         InfoButton.SetActive(false);
 
-        moveHolder.Play("MoveHolderAnimation");
-
-        gamedata.gameData.isOnCanvas = false;       
+        gamedata.gameData.isOnCanvas = false;     
     }
 }
 

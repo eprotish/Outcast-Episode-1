@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8d4506dcc506ae41bcbc8bcff7f7948, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  CurrentSceneName: Scene 4-1 VIP Room - Dream
-  RespawnPoint: 0
-  FaceRight: 1
-  isOnCanvas: 1
+  CurrentSceneName: Scene 2
+  RespawnPoint: 1
+  FaceRight: 0
+  isOnCanvas: 0
   inventoryItems:
   - ItemId: Fuse
     ItemName: Fuse
@@ -72,10 +72,8 @@ MonoBehaviour:
     BackDocument: {fileID: 0}
     hasViewed: 0
   gameEvents: []
-  itemIds:
-  - m
-  - Battery
+  itemIds: []
   missions: []
   currentMission: 
   currentMissionIndex: 0
-  steps: 01010101010101010101010101010100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  steps: 01010000010000000000000000000000000000000000000000000000000000000000000001010101000000000000000000000000000000000000000000000000000000000000

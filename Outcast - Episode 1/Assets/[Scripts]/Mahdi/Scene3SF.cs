@@ -109,7 +109,6 @@ public class Scene3SF : MonoBehaviour
     {
         Margin.gameObject.SetActive(true);
         Margin.SetBool("Show", true);
-        moveHolder.SetActive(false);
 
         GameObject.FindObjectOfType<DialogueInteraction>().OnDialogueStarted
             (Artan);
@@ -129,6 +128,8 @@ public class Scene3SF : MonoBehaviour
         Door4Interaction.SetActive(false);
         WearInteraction.SetActive(true);
         moveHolder.SetActive(false);
+
+        TriggerDialog.SetActive(false);
     }
 
     IEnumerator WaitThisFuncation (float wait)
@@ -136,6 +137,7 @@ public class Scene3SF : MonoBehaviour
         yield return new WaitForSeconds(wait);
         Margin.SetBool("Show", false);
         moveHolder.SetActive(true);
+        moveHolder.GetComponent<Animator>().Play("MoveHolderAnimationOff");
     }
 
 

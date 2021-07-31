@@ -74,13 +74,12 @@ public class Scene2 : MonoBehaviour
     [SerializeField] private Animator PanelFade;
     [SerializeField] private GameObject Camera3;
 
-    [SerializeField] private float shakeInt;
-    [SerializeField] private float shakeDis;
-    private Vector3 shakePos;
-    private Vector3 orginPos;
-
     [SerializeField] private AudioSource music;
+    private float FirstVolumemusic;
     [SerializeField] private AudioSource music2;
+    private float FirstVolumemusic2;
+    [SerializeField] private AudioSource music3;
+    private float FirstVolumemusic3;
     [SerializeField] private float SpeedVolumeDown;
     [SerializeField] private float SpeedVolumeUp;
     private bool canup;
@@ -92,9 +91,16 @@ public class Scene2 : MonoBehaviour
     private bool CanCarMove;
  
 
+
+
+    void Awake()
+    {    
+        FirstVolumemusic = music.volume;
+        FirstVolumemusic2 = music2.volume;
+        FirstVolumemusic3 = music3.volume;
+    }
     void Start()
     {
-
         #region Steps
         GameDataController gameData = FindObjectOfType<GameDataController>();
         Step._steps = gameData.gameData.steps;
@@ -149,8 +155,7 @@ public class Scene2 : MonoBehaviour
 
         MainThunder.GetComponent<Animator>().Play("Thunder_Light_Long");
         Soundplayer = GetComponent<AudioSource>();
-
-
+        
         PlaySound(Soundthunder1,false, Volume1);
 
     }
@@ -158,9 +163,6 @@ public class Scene2 : MonoBehaviour
     void FixedUpdate()
     {
         BirdRun();
-
-        if (Camera3.activeInHierarchy)
-                   camera_Noise();
 
         if (candown)
             VolumeDown();
@@ -341,6 +343,8 @@ public class Scene2 : MonoBehaviour
     {
         yield return new WaitForSeconds(WaitTime);
         PanelFuseBox.SetActive(false);
+
+        GameObject.Find("Move Holder - New").GetComponent<Animator>().Play("MoveHolderAnimationOff");
     }
 
     IEnumerator waitToLightCome (float Waittime)
@@ -370,6 +374,10 @@ public class Scene2 : MonoBehaviour
 
         PanelFade.gameObject.SetActive(true);
         PanelFade.SetBool("Show", true);
+
+        GameObject.Find("Inventory").SetActive(false);
+        GameObject.Find("Inventorybtn").SetActive(false);
+        GameObject.Find("Move Holder - New").SetActive(false);
 
         candown = true;
         StartCoroutine(FadeOutNow(12f));
@@ -421,42 +429,49 @@ public class Scene2 : MonoBehaviour
         Artan.transform.position = new Vector3(100, 100, 0);
         Lida.transform.position = new Vector3(100, 100, 0);
         Camera3.SetActive(true);
-        orginPos = Camera3.transform.position;
-    }
-
-    void camera_Noise()
-    {
-
-        var xpos = Time.time * shakeInt + 10;
-        var ypos = Time.time * shakeInt + 100;
-   
-            shakePos = new Vector3((Mathf.PerlinNoise(xpos, 1) - 0.5f) * shakeDis,
-            (Mathf.PerlinNoise(ypos, 1) - 0.5f) * shakeDis, -10);
-
-            Camera3.transform.position = orginPos + shakePos;
-        
     }
 
     void VolumeDown()
     {
-        if (music.volume > 0 || music2.volume > 0)
+        if(music2.volume == 0 && music.volume == 0 && music3.volume == 0)
+             return;
+
+
+        if (music.volume > 0)
         {
             music.volume -= SpeedVolumeDown * Time.deltaTime;
+        }
+
+        if(music2.volume > 0) {
             music2.volume -= SpeedVolumeDown * Time.deltaTime;
+        }
+
+        if(music3.volume > 0) {
+            music3.volume -= SpeedVolumeDown * Time.deltaTime;
         }
     }
 
     void VolumeUp()
     {
-        if (music.volume <= 1f)
+
+        if(music2.volume == FirstVolumemusic2 && music.volume == FirstVolumemusic && music3.volume == FirstVolumemusic3)
+             return;
+
+        if (music.volume <= FirstVolumemusic)
         {
             music.volume += SpeedVolumeUp * Time.deltaTime;
         }
 
-        if (music2.volume <= 0.3f)
+        if (music2.volume <= FirstVolumemusic2)
         {
             music2.volume += SpeedVolumeUp * Time.deltaTime;
         }
+
+        if(music3.volume <= FirstVolumemusic3) {
+            music3.volume += SpeedVolumeUp * Time.deltaTime;
+        }
+
+
     }
 
     public void AllLightOff ()
@@ -470,7 +485,7 @@ public class Scene2 : MonoBehaviour
         WindowLight.SetActive(false);
         LightZargMotel.SetActive(false);
         LightMotel2.SetActive(false);
-        MainLight.intensity = 0.2f;
+        MainLight.intensity = 0.05f;
     }
 
     public void AllLightOn ()
@@ -485,7 +500,7 @@ public class Scene2 : MonoBehaviour
         LightZargMotel.SetActive(true);
         LightMotel2.SetActive(true);
 
-        MainLight.intensity = 0.5f;
+        MainLight.intensity = 0.4f;
     } 
 
 }
