@@ -11,6 +11,17 @@ public class MoveHolderController : MonoBehaviour, IPointerDownHandler, IPointer
     PlayerMovement move;
     GameObject inventorybtn;
 
+    private InventoryManger inventoryManger;
+    void Start()
+    {
+        if (run)
+            run.SetActive(false);
+        move = FindObjectOfType<PlayerMovement>();
+
+        inventorybtn = GameObject.Find("Inventorybtn");
+        inventoryManger = GameObject.FindObjectOfType<InventoryManger>();
+    }
+
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -21,7 +32,7 @@ public class MoveHolderController : MonoBehaviour, IPointerDownHandler, IPointer
 
         if (buttonCode == 0 && !move.InInteratcion)  //moveLeft    // moghee ke to interaction nartone rah bere
         {
-            if(move.CantMoveLeft)
+            if(move.CantMoveLeft && inventoryManger.OnQuickInventory) 
                 return;
                
 
@@ -30,7 +41,7 @@ public class MoveHolderController : MonoBehaviour, IPointerDownHandler, IPointer
         }
         if (buttonCode == 1 && !move.InInteratcion) //moveRight    // moghee ke to interaction nartone rah bere
         {
-            if(move.CantMoveRight)
+            if(move.CantMoveRight && inventoryManger.OnQuickInventory)
                 return;
                
 
@@ -39,6 +50,10 @@ public class MoveHolderController : MonoBehaviour, IPointerDownHandler, IPointer
         }
         if (buttonCode == 2) //run
         {
+            if(inventoryManger.OnQuickInventory)
+            return;
+
+            
             move.Run();
             inventorybtn.SetActive(false);
         }
@@ -62,15 +77,6 @@ public class MoveHolderController : MonoBehaviour, IPointerDownHandler, IPointer
             inventorybtn.SetActive(true);
         }
 
-    }
-
-    void Start()
-    {
-        if (run)
-            run.SetActive(false);
-        move = FindObjectOfType<PlayerMovement>();
-
-        inventorybtn = GameObject.Find("Inventorybtn");
     }
 
     public void HideRunButton () {

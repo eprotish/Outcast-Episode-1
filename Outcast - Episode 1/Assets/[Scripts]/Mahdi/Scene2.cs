@@ -27,8 +27,6 @@ public class Scene2 : MonoBehaviour
     [SerializeField] [Range(0, 1)] private float VolumeFuseButton = 0.5f;
 
 
-    [SerializeField] private AudioClip SoundCarStart;
-    [SerializeField] [Range(0, 1)] private float VolumeCarStart = 0.5f;
     [SerializeField] private AudioClip SoundCarEngine;
     [SerializeField] [Range(0, 1)] private float VolumeCarEngine = 0.5f;
 
@@ -91,13 +89,18 @@ public class Scene2 : MonoBehaviour
     private bool CanCarMove;
  
 
-
+    [SerializeField] private Animator BlackPanel;
+    [SerializeField] private AudioSource CarArriveSound;
 
     void Awake()
     {    
         FirstVolumemusic = music.volume;
         FirstVolumemusic2 = music2.volume;
-        FirstVolumemusic3 = music3.volume;
+        FirstVolumemusic3 = music3.volume;   
+
+        
+        MainThunder.GetComponent<Animator>().Play("Thunder_Light_Long");
+        Soundplayer = GetComponent<AudioSource>();       
     }
     void Start()
     {
@@ -106,11 +109,17 @@ public class Scene2 : MonoBehaviour
         Step._steps = gameData.gameData.steps;
         _step = GetComponent<Step>();
 
-        // tutorail
-        if (!_step.Steps[0])
-        {
-            _Tutorail.GetComponent<Tutorail>().TutorailShow(1);
-            _step.DoWork(0);
+
+        //BlackPanel
+
+        if(!_step.Steps[0]) {
+           BlackPanel.gameObject.SetActive(true);
+            CarArriveSound.Play();
+
+            StartCoroutine(WaitToBlackPanel());
+        }
+        else {
+             PlaySound(Soundthunder1,false, Volume1);
         }
 
         //dialog light
@@ -152,14 +161,33 @@ public class Scene2 : MonoBehaviour
             TriggerLida.SetActive(true);
         }
         #endregion
-
-        MainThunder.GetComponent<Animator>().Play("Thunder_Light_Long");
-        Soundplayer = GetComponent<AudioSource>();
-        
-        PlaySound(Soundthunder1,false, Volume1);
+       
 
     }
+
+
+    IEnumerator WaitToBlackPanel () {
+
+       yield return new WaitForSeconds(9);
+       BlackPanel.Play("FadeOutFirst");
+
+       StartCoroutine(TutorailCome());
+    }
     
+    IEnumerator TutorailCome () {
+
+        yield return new WaitForSeconds(4.2f);
+        BlackPanel.gameObject.SetActive(false);
+         if (!_step.Steps[0])
+        {
+            _Tutorail.GetComponent<Tutorail>().TutorailShow(1);
+            _step.DoWork(0);
+
+        }
+    }
+
+
+
     void FixedUpdate()
     {
         BirdRun();
@@ -393,7 +421,6 @@ public class Scene2 : MonoBehaviour
         PanelFade.SetBool("Show", false);
 
         StartCoroutine(LightCarOn(9f));
-        PlaySound(SoundCarStart,false, VolumeCarStart);
     }
 
     IEnumerator LightCarOn (float wait)
@@ -403,6 +430,7 @@ public class Scene2 : MonoBehaviour
 
         FrontLightCar.SetActive(true);
 
+        PlaySound(SoundCarEngine,false, VolumeCarEngine);
         StartCoroutine(CarMove(3f));
     }
 
@@ -411,8 +439,6 @@ public class Scene2 : MonoBehaviour
         yield return new WaitForSeconds(wait);
         CanCarMove = true;
         StartCoroutine(FinishFadeOut(1f));
-
-        PlaySound(SoundCarEngine,false, VolumeCarEngine);
 
         Car.GetComponent<Animator>().Play("Car2Animation");
     }

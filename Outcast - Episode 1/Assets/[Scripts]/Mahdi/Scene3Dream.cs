@@ -46,7 +46,6 @@ public class Scene3Dream : MonoBehaviour
     [SerializeField] private LoadLevelInteraction _load;
 
     [SerializeField] private GameObject DarPedram;
-    [SerializeField] private GameObject DarPedramStatic;
     [SerializeField] private GameObject PanelCantWork;
 
     [SerializeField] private GameObject Loster;
@@ -72,6 +71,12 @@ public class Scene3Dream : MonoBehaviour
     [SerializeField] private GameObject ZeroKey;
 
 
+    [SerializeField] private Light2D globalLight;
+    [SerializeField] private Light2D [] anotherLight;
+
+    private float globalLightValue;
+    private float [] anotherValue; 
+
     private Step _step; 
       
     void Start()
@@ -89,11 +94,10 @@ public class Scene3Dream : MonoBehaviour
             Circle.SetActive(true);
         }
 
-        if(_step.Steps[22] && !_step.Steps[23])
+        if(_step.Steps[22] && !_step.Steps[24])
         {
             Battery.SetActive(true);
-            TriggerCoffeeShop.SetActive(true);
-            
+            TriggerCoffeeShop.SetActive(true);           
         }
 
         if(_step.Steps[22] && !_step.Steps[25])
@@ -121,15 +125,11 @@ public class Scene3Dream : MonoBehaviour
             TriggerLoster.SetActive(true);
         }
 
-        if(_step.Steps[30])
-        {
-            DarPedramStatic.SetActive(true);
-        }
-
         if (_step.Steps[31])
         {
             Loster.transform.localPosition = new Vector3(5.06f, -3.98f, 0);
             Loster.transform.eulerAngles = new Vector3(0, 0, -90);
+            Loster.transform.GetChild(0).gameObject.SetActive(false);
         }
 
         if(_step.Steps[32])
@@ -195,8 +195,8 @@ public class Scene3Dream : MonoBehaviour
             _step.DoWork(30);
             DarPedram.SetActive(true);
             shake_time = 1f;
-            shakeDis = 0.08f;
-            shakeInt = 13f;
+            shakeDis = 0.12f;
+            shakeInt = 19f;
             cam.SetActive(true);
             cam.transform.position = GameObject.FindGameObjectWithTag("MainCamera").transform.position;
             cam.GetComponent<Camera>().orthographicSize = 3.43f;
@@ -324,6 +324,7 @@ public class Scene3Dream : MonoBehaviour
 
     public void FallLoster ()
     {
+        Loster.transform.GetChild(0).gameObject.SetActive(false);
         Loster.GetComponent<Rigidbody2D>().gravityScale = 1f;
         Loster.transform.eulerAngles = new Vector3(0, 0, -6);
         StartCoroutine(LosterDown(0.85f));
@@ -340,6 +341,17 @@ public class Scene3Dream : MonoBehaviour
     {
         yield return new WaitForSeconds(wait);
         PanelCantWork.SetActive(false);
+
+        LightOff();
+
+        StartCoroutine(LightBackByDelay());
+    }
+
+    IEnumerator LightBackByDelay () {
+        yield return new WaitForSeconds(1.5f);
+
+        DarPedram.SetActive(false);
+        LightOn();
     }
 
     IEnumerator LosterDown (float wait)
@@ -353,8 +365,6 @@ public class Scene3Dream : MonoBehaviour
         is_shake = true;
         orginPos = cam.transform.position;
         PlaySound(SoundLoster, VolumeLoster);
-        Loster.GetComponentInChildren<Animation>().enabled = false;
-        Loster.GetComponentInChildren<Light2D>().intensity = 0f;
         moveHolder.SetActive(false);
     }
 
@@ -415,5 +425,29 @@ public class Scene3Dream : MonoBehaviour
         {
             KeyholderInTarget = true;
         }
+    }
+
+
+    private void LightOff () {
+      
+       globalLightValue = globalLight.intensity;
+       globalLight.intensity = 0;
+       anotherValue = new float [anotherLight.Length];
+
+       for (var i = 0; i < anotherLight.Length; i++)
+       {
+           anotherValue[i] = anotherLight[i].intensity;
+           anotherLight[i].intensity = 0;
+       }
+    }
+
+    private void LightOn () {
+
+       globalLight.intensity = globalLightValue;
+
+       for (var i = 0; i < anotherLight.Length; i++)
+       {
+           anotherLight[i].intensity = anotherValue[i];
+       }
     }
 }

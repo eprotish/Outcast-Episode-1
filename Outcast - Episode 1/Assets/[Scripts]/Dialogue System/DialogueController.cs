@@ -44,6 +44,8 @@ public class DialogueController : MonoBehaviour
 
     private CharacterController2D characterController2d;
 
+    public Color32 [] DialogColor;
+
     private void Awake()
     {
         _step = GameObject.FindObjectOfType<Step>();
@@ -192,22 +194,27 @@ public class DialogueController : MonoBehaviour
         if(mainConversation.lines[lineIndex].character.fullName == "آرتان")
         {
             CameraGoTo = "Artan";
+            ChangeDialogColor(0);
         }
 
         if(mainConversation.lines[lineIndex].character.fullName == "متلدار")
         {
             CameraGoTo = "Jamshid";
+            ChangeDialogColor(1);
         }
 
         if(mainConversation.lines[lineIndex].character.fullName == "ليدا")
         {
             CameraGoTo = "Lida";
+            ChangeDialogColor(2);
         }
 
 
         if (conversation.lines.Length > lineIndex && !uncheckedLines.Contains(lineIndex))
         {
-            DialogueText.text = conversation.lines[lineIndex].text;
+
+            // this is important
+            DialogueText.text = mainConversation.lines[lineIndex].character.fullName + " : " + conversation.lines[lineIndex].text;
 
             if (conversation.lines[lineIndex].choices != null && conversation.lines[lineIndex].choices.Length > 0)
             {
@@ -349,5 +356,10 @@ public class DialogueController : MonoBehaviour
         {
             transform.GetChild(i).gameObject.SetActive(true);
         }
+    }
+
+    void ChangeDialogColor (int numOfChar) {
+
+         DialogueText.color = DialogColor[numOfChar];
     }
 }

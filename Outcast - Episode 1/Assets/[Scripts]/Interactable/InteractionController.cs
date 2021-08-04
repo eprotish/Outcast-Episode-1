@@ -218,6 +218,7 @@ public class InteractionController : MonoBehaviour
 
     IEnumerator TextInfoCoroutine()
     {
+/*
         canClick = false;
         textBubble.transform.GetChild(0).gameObject.SetActive(true);
         textBubble.TypeText(textInfos[textIndex]);
@@ -226,6 +227,25 @@ public class InteractionController : MonoBehaviour
         textBubble.ClearText();
         textBubble.transform.GetChild(0).gameObject.SetActive(false);
         canClick = true;
+*/
+        canClick = false;
+        textBubble.transform.GetChild(0).gameObject.SetActive(true);
+        textBubble.SetDialog(textInfos[textIndex]);
+
+        if(textIndex < textInfos.Length)
+        {
+            textIndex++;
+        }
+        else 
+        {
+            textIndex = 0;
+        }
+
+        yield return new WaitForSeconds(textFadeTime);
+        textBubble.ClearText();
+        textBubble.transform.GetChild(0).gameObject.SetActive(false);
+        canClick = true;
+
 
         if (SceneName == "Scene 4 VIP Room")
             Controller.GetComponent<Scene4VIP>().EndInteraction(this.name);

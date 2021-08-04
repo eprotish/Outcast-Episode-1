@@ -59,6 +59,8 @@ public class InventoryManger : MonoBehaviour
     GameObject DestroyItem;
     Step _step;
 
+    [HideInInspector] public bool OnQuickInventory;
+
     private GameObject inventoryBtnObj;
 
     private Animator moveHolder;
@@ -312,6 +314,7 @@ public class InventoryManger : MonoBehaviour
         {
             info.SetActive(false);
             QuickInventory.SetActive(false);
+            OnQuickInventory = false;
             InfoButton.SetActive(false);
 
             gamedata.gameData.isOnCanvas = false;
@@ -321,6 +324,7 @@ public class InventoryManger : MonoBehaviour
         else
         {
             QuickInventory.SetActive(true);
+            OnQuickInventory = true;
             InfoButton.SetActive(true);
             info.SetActive(false);
 
@@ -487,6 +491,7 @@ public class InventoryManger : MonoBehaviour
     {
         info.SetActive(false);
         QuickInventory.SetActive(false);
+        OnQuickInventory = false;
         InfoButton.SetActive(false);
 
         gamedata.gameData.isOnCanvas = false;     

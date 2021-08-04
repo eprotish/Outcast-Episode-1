@@ -45,9 +45,14 @@ public class TextBubble : MonoBehaviour
     }
     public void TypeText(string str)
     {
-        StopCoroutine(TypeWriter(str));
-        StartCoroutine(TypeWriter(str));
+       // StopCoroutine(TypeWriter(str));
+       // StartCoroutine(TypeWriter(str));
         //textBubble.text = str;
+    }
+
+    public void SetDialog (string content) {
+
+      textBubble.text = content;
     }
 
     public void ClearText()
