@@ -5,7 +5,7 @@ using UnityEngine;
 public class InteractionOff : MonoBehaviour
 {
 
-   public GameDataController gamedata;
+    public GameDataController gamedata;
     private UiController uiController;
 
     public void Awake()
@@ -16,9 +16,10 @@ public class InteractionOff : MonoBehaviour
 
     public void OnEnable()
     {
+
         if (gamedata.gameData.isOnCanvas)
               return;
-
+        
         uiController.ShowOff();
         gamedata.gameData.isOnCanvas = true;
 

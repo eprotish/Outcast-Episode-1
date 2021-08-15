@@ -103,6 +103,8 @@ public class InteractionController : MonoBehaviour
             { 
                 if (hit.collider.gameObject.name.Equals(gameObject.name))
                 {
+                    
+                    Interact();
 
                     if (hit.transform.gameObject.tag == "Item")
                     {
@@ -129,9 +131,7 @@ public class InteractionController : MonoBehaviour
                            
                         }
                     }
-
-                    Interact();
-
+                    
                     #region mahdi
 
                     if(SceneName == "Scene 2")
@@ -209,9 +209,9 @@ public class InteractionController : MonoBehaviour
             }
 
             if (isText)
-            {               
-                StopCoroutine(TextInfoCoroutine());
+            {
                 StartCoroutine(TextInfoCoroutine());
+                //StartCoroutine(TextInfoCoroutine());
             }
         }
     }
@@ -228,18 +228,12 @@ public class InteractionController : MonoBehaviour
         textBubble.transform.GetChild(0).gameObject.SetActive(false);
         canClick = true;
 */
+
         canClick = false;
         textBubble.transform.GetChild(0).gameObject.SetActive(true);
         textBubble.SetDialog(textInfos[textIndex]);
+        textIndex = (textIndex + 1) % textInfos.Length;
 
-        if(textIndex < textInfos.Length)
-        {
-            textIndex++;
-        }
-        else 
-        {
-            textIndex = 0;
-        }
 
         yield return new WaitForSeconds(textFadeTime);
         textBubble.ClearText();

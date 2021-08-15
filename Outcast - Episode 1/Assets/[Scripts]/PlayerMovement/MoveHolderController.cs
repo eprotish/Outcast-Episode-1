@@ -20,12 +20,15 @@ public class MoveHolderController : MonoBehaviour, IPointerDownHandler, IPointer
 
         inventorybtn = GameObject.Find("Inventorybtn");
         inventoryManger = GameObject.FindObjectOfType<InventoryManger>();
+        run = GameObject.Find("Move Holder - New").transform.GetChild(2).gameObject;
     }
 
 
     public void OnPointerDown(PointerEventData eventData)
     {
-
+          if(inventoryManger.OnQuickInventory)
+                return;
+          
         Color holdColor = GetComponent<Image>().color;
         holdColor.a = 0.5f;
         GetComponent<Image>().color = holdColor;

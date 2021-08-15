@@ -60,6 +60,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -135,6 +136,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -209,6 +211,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -275,16 +278,11 @@ MonoBehaviour:
   mainConversation: {fileID: 11400000, guid: 7fb401523e515de4ca66d2abed4d2a2f, type: 2}
   exitConversation: {fileID: 11400000, guid: 7fb401523e515de4ca66d2abed4d2a2f, type: 2}
   conversation: {fileID: 11400000, guid: 1acf15f22674382459ab484260be3efd, type: 2}
-  ChoicePrefab: {fileID: 6790186191427993193, guid: d0a426a57cd5c89488009e8c2f607578,
-    type: 3}
   DialogueText: {fileID: 5331235783672130035}
   lineIndex: 0
   next: {fileID: 5331235783684015891}
   uncheckedLines: 
   currentLineName: 
-  BlackSprite: {fileID: 0}
-  RedSprite: {fileID: 21300000, guid: 92acd11d2f28a4e4a8bc615188767a95, type: 3}
-  moveHolder: {fileID: 0}
   cam: {fileID: 0}
   SpeedCamera: 4.5
   MaxCameraZoom: 1.6
@@ -292,9 +290,19 @@ MonoBehaviour:
   characters:
   - {fileID: 0}
   - {fileID: 0}
+  charactersAnimator:
+  - {fileID: 0}
+  - {fileID: 0}
   _Manger: {fileID: 0}
   jamshid1: {fileID: 11400000, guid: 7fb401523e515de4ca66d2abed4d2a2f, type: 2}
   jamshid2: {fileID: 11400000, guid: 256ed6fc5cb05ec45ad07dc72dbdc14f, type: 2}
+  DialogColor:
+  - serializedVersion: 2
+    rgba: 4294967295
+  - serializedVersion: 2
+    rgba: 4285399039
+  - serializedVersion: 2
+    rgba: 4294932416
 --- !u!114 &7371596715727619551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,6 +315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2cd69a56a8ff5b49ba173aec820e207, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gamedata: {fileID: 0}
 --- !u!1 &5331235783672130033
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,6 +376,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -448,6 +458,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -476,6 +487,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 3
+    m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -506,6 +518,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5331235783459709919}
+        m_TargetAssemblyTypeName: 
         m_MethodName: NextLine
         m_Mode: 1
         m_Arguments:

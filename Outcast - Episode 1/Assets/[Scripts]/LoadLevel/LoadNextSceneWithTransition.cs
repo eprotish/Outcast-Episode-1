@@ -6,9 +6,15 @@ using UnityEngine.SceneManagement;
 public class LoadNextSceneWithTransition : MonoBehaviour
 {
     public Animator SceneTransitionAnimator;
+    private bool Clicked;
 
     public void LoadScene()
     {
+        if(Clicked)
+            return;
+        
+        
+        Clicked = true;
         StartCoroutine(LoadSceneWithTransition(SceneManager.GetActiveScene().buildIndex + 1));
     }
     IEnumerator LoadSceneWithTransition(int sceneIndex)

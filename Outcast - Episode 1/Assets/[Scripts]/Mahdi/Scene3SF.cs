@@ -12,6 +12,7 @@ public class Scene3SF : MonoBehaviour
     [SerializeField] private float TimeWear = 5f;
     private Step _step;
     [SerializeField] private GameObject Lida;
+    [SerializeField] private Animator LidaAnim;
     [SerializeField] private GameObject DoorRoom4VIP;
     [SerializeField] private Animator Margin;
     [SerializeField] private GameObject moveHolder;
@@ -122,6 +123,8 @@ public class Scene3SF : MonoBehaviour
     {
         Lida.transform.eulerAngles = new Vector3(0, 180, 0);
         LidaCanGo = true;
+        
+        LidaAnim.Play("Elina_walk_anim");
         StartCoroutine(WaitThisFuncation(5f));
 
         _step.DoWork(38);

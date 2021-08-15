@@ -19,7 +19,7 @@ public class TapToPlayController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     IEnumerator ShowTTP()

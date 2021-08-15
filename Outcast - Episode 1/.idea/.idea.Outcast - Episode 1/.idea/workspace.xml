@@ -30,15 +30,22 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/[Scripts]/Interactable/InteractionController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/[Scripts]/Mahdi/InteractionOff.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/[Scripts]/PlayerMovement.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/[Scripts]/Dialogue System/DialogueController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/[Scripts]/Mahdi/drop.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Menu/NewMenu/ORGmenu/Transition/TapToPlayController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/[Scripts]/PlayerMovement/MoveHolderController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/[Scripts]/CharacterController2D.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/[Scripts]/Mahdi/Scene3SF.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/[Scripts]/Mahdi/WC.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/[Scripts]/Mahdi/ObjectDrop.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../../../Program Files/Unity/Hub/Editor/2019.4.4f1/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/EventSystem/ExecuteEvents.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/[Scripts]/Interactable/InteractionControllerItemActivate.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/[Scripts]/LoadLevel/LoadNextSceneWithTransition.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/[Scripts]/Mahdi/InventoryManger.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/[Scripts]/Mahdi/items.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/[Scripts]/Mahdi/drag_drop.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@7.3.1/Runtime/2D/Light2D.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/[Scripts]/Interaction/TextBubble.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/[Scripts]/Mahdi/Scene2.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/[Scripts]/Mahdi/Trigger.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/[Scripts]/Mahdi/Menu.cs" root0="FORCE_HIGHLIGHTING" />
@@ -54,10 +61,15 @@
         <option value="$PROJECT_DIR$/Assets/[Scripts]/Mahdi/drag_drop.cs" />
         <option value="$PROJECT_DIR$/Assets/[Scripts]/Mahdi/drop.cs" />
         <option value="$PROJECT_DIR$/Assets/[Scripts]/Mahdi/Menu.cs" />
-        <option value="$PROJECT_DIR$/Assets/[Scripts]/Interactable/InteractionController.cs" />
-        <option value="$PROJECT_DIR$/Assets/[Scripts]/Mahdi/Scene2.cs" />
         <option value="$PROJECT_DIR$/Assets/[Scripts]/Mahdi/Trigger.cs" />
         <option value="$PROJECT_DIR$/Assets/[Scripts]/PlayerMovement.cs" />
+        <option value="$PROJECT_DIR$/Assets/[Scripts]/Mahdi/Scene3SF.cs" />
+        <option value="$PROJECT_DIR$/Assets/[Scripts]/Mahdi/InteractionOff.cs" />
+        <option value="$PROJECT_DIR$/Assets/[Scripts]/Mahdi/Scene2.cs" />
+        <option value="$PROJECT_DIR$/Assets/[Scripts]/Interactable/InteractionController.cs" />
+        <option value="$PROJECT_DIR$/Assets/[Scripts]/PlayerMovement/MoveHolderController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Menu/NewMenu/ORGmenu/Transition/TapToPlayController.cs" />
+        <option value="$PROJECT_DIR$/Assets/[Scripts]/LoadLevel/LoadNextSceneWithTransition.cs" />
       </list>
     </option>
   </component>
@@ -124,6 +136,24 @@
       <workItem from="1613151451937" duration="1768000" />
       <workItem from="1613153288594" duration="884000" />
       <workItem from="1613154441381" duration="1044000" />
+      <workItem from="1628441148867" duration="236000" />
+      <workItem from="1628441719170" duration="47000" />
+      <workItem from="1629024853011" duration="43000" />
+      <workItem from="1629025595882" duration="92000" />
+      <workItem from="1629025747762" duration="349000" />
+      <workItem from="1629026425448" duration="102000" />
+      <workItem from="1629035394738" duration="221000" />
+      <workItem from="1629035711112" duration="41000" />
+      <workItem from="1629035820439" duration="41000" />
+      <workItem from="1629036114593" duration="57000" />
+      <workItem from="1629036228408" duration="16000" />
+      <workItem from="1629036293025" duration="78000" />
+      <workItem from="1629036605544" duration="272000" />
+      <workItem from="1629036926765" duration="28000" />
+      <workItem from="1629037003205" duration="43000" />
+      <workItem from="1629037090301" duration="46000" />
+      <workItem from="1629037539251" duration="92000" />
+      <workItem from="1629038357595" duration="156000" />
     </task>
     <servers />
   </component>

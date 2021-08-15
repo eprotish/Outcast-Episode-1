@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8d4506dcc506ae41bcbc8bcff7f7948, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  CurrentSceneName: Scene 3-1 FF - Dream
-  RespawnPoint: 1
-  FaceRight: 0
-  isOnCanvas: 0
+  CurrentSceneName: Scene 3 FF
+  RespawnPoint: 0
+  FaceRight: 1
+  isOnCanvas: 1
   inventoryItems:
   - ItemId: Fuse
     ItemName: Fuse
@@ -23,7 +23,7 @@ MonoBehaviour:
     DocumentName: 
     ShortInfo: 
     MainInfo: 
-    ItemSprite: {fileID: 21300000, guid: 1e9259ad5ea4dc54aa173f22b9b66867, type: 3}
+    ItemSprite: {fileID: 21300000, guid: d43d5ef94e976794699181913cf4424d, type: 3}
     BackDocument: {fileID: 0}
     hasViewed: 0
   - ItemId: Battery
@@ -33,15 +33,6 @@ MonoBehaviour:
     ShortInfo: 
     MainInfo: 
     ItemSprite: {fileID: 21300000, guid: 8baad58f7e5e6a24e8a3d3af6ef318be, type: 3}
-    BackDocument: {fileID: 0}
-    hasViewed: 0
-  - ItemId: ZeroKey
-    ItemName: ZeroKey
-    isDocument: 0
-    DocumentName: 
-    ShortInfo: 
-    MainInfo: 
-    ItemSprite: {fileID: 21300000, guid: 4b025bda059d731478a3f44689d1c5db, type: 3}
     BackDocument: {fileID: 0}
     hasViewed: 0
   - ItemId: KeyArtanRoom
@@ -71,10 +62,21 @@ MonoBehaviour:
     ItemSprite: {fileID: 21300000, guid: ea13fe5d34583304fb9e1b8368c04238, type: 3}
     BackDocument: {fileID: 0}
     hasViewed: 0
+  - ItemId: Book
+    ItemName: Book
+    isDocument: 1
+    DocumentName: "\u06A9\u062A\u0627\u0628"
+    ShortInfo: "\u0639\u06A9\u0633 \u064A\u06A9 \u0633\u0631\u064A \u0627\u0641\u0631\u0627\u062F
+      \u0631\u0648\u0634\u0647"
+    MainInfo: "\u06A9\u062A\u0627\u0628\u064A \u06A9\u0647 \u0628\u0627 \u0686\u0633\u0628
+      \u062F\u0631\u0633\u062A\u0634 \u06A9\u0631\u062F\u0645"
+    ItemSprite: {fileID: 21300000, guid: a089820cb34348f41920e639e2798132, type: 3}
+    BackDocument: {fileID: 21300000, guid: a089820cb34348f41920e639e2798132, type: 3}
+    hasViewed: 0
   gameEvents: []
   itemIds:
-  - ZeroKey
+  - "\u06A9\u062A\u0627\u0628"
   missions: []
   currentMission: 
   currentMissionIndex: 0
-  steps: 01010000010000000000000000000001000000000000000001010100000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  steps: 01010000010000000000000000010100000000000001000000000000000000000000010100000000000000000000000000000000000000000000000000000000000000000000

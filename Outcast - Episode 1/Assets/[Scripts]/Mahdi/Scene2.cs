@@ -162,7 +162,6 @@ public class Scene2 : MonoBehaviour
         }
         #endregion
        
-
     }
 
 

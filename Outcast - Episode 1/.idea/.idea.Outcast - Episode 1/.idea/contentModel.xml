@@ -12,9 +12,16 @@
             <e p="Dialogue" t="Include">
               <e p="Dia.txt" t="Include" />
             </e>
+            <e p="Settings" t="Include">
+              <e p="SettingsController.cs" t="Include" />
+            </e>
           </e>
         </e>
         <e p="[Scripts]" t="Include">
+          <e p="AudioManagers" t="Include">
+            <e p="ButtonTransitionAudioController.cs" t="Include" />
+            <e p="MainMenuAudioController.cs" t="Include" />
+          </e>
           <e p="CharacterController2D.cs" t="Include" />
           <e p="Dialogue System" t="Include">
             <e p="Character.cs" t="Include" />
@@ -48,35 +55,85 @@
           </e>
           <e p="Interactable" t="Include">
             <e p="InteractionController.cs" t="Include" />
+            <e p="InteractionControllerItemActivate.cs" t="Include" />
           </e>
           <e p="Interaction" t="Include">
             <e p="TextBubble.cs" t="Include" />
           </e>
+          <e p="Lighting" t="Include">
+            <e p="LightController.cs" t="Include" />
+          </e>
           <e p="LoadLevel" t="Include">
             <e p="LoadLevelController.cs" t="Include" />
             <e p="LoadLevelInteraction.cs" t="Include" />
+            <e p="LoadNextSceneWithTransition.cs" t="Include" />
             <e p="RespawnPoints.cs" t="Include" />
           </e>
           <e p="Mahdi" t="Include">
             <e p="drag_drop.cs" t="Include" />
             <e p="drop.cs" t="Include" />
+            <e p="Editor" t="Include">
+              <e p="EditorTab.cs" t="Include" />
+            </e>
+            <e p="InteractionOff.cs" t="Include" />
             <e p="InventoryManger.cs" t="Include" />
-            <e p="items.cs" t="Include" />
             <e p="Menu.cs" t="Include" />
             <e p="ObjectDrop.cs" t="Include" />
             <e p="Scene2.cs" t="Include" />
+            <e p="Scene3.cs" t="Include" />
+            <e p="Scene3Dream.cs" t="Include" />
+            <e p="Scene3SF.cs" t="Include" />
+            <e p="Scene3SFDream.cs" t="Include" />
+            <e p="Scene4VIP.cs" t="Include" />
+            <e p="SFLong.cs" t="Include" />
+            <e p="Step.cs" t="Include" />
+            <e p="Text_Bubble.cs" t="Include" />
             <e p="Trigger.cs" t="Include" />
+            <e p="Tutorail.cs" t="Include" />
+            <e p="UiController.cs" t="Include" />
+            <e p="VIPDream.cs" t="Include" />
+            <e p="WC.cs" t="Include" />
+          </e>
+          <e p="PlayerMovement" t="Include">
+            <e p="DontDestroyOnLoadMoveHolder.cs" t="Include" />
+            <e p="MoveHolderController.cs" t="Include" />
           </e>
           <e p="PlayerMovement.cs" t="Include" />
           <e p="Riddles" t="Include">
             <e p="Key Riddler" t="Include">
               <e p="KeyRiddle.cs" t="Include" />
               <e p="KeyRiddleController.cs" t="Include" />
+              <e p="KeyRiddleFinishedEvent.cs" t="Include" />
               <e p="RiddleControllerFlow.cs" t="Include" />
             </e>
             <e p="Remote Control" t="Include">
               <e p="Scripts" t="Include">
                 <e p="RemoteControlRiddle.cs" t="Include" />
+              </e>
+            </e>
+            <e p="Symbolic Lock Riddle" t="Include">
+              <e p="RollTest.cs" t="Include" />
+              <e p="SymbolicLockRiddleController.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Save and Load System" t="Include">
+            <e p="GameData.cs" t="Include" />
+            <e p="GameDataBinary.cs" t="Include" />
+            <e p="GameDataController.cs" t="Include" />
+            <e p="GameDataReload.cs" t="Include" />
+            <e p="GameDataTest.cs" t="Include" />
+            <e p="GameEventController.cs" t="Include" />
+            <e p="GameEventDataClass.cs" t="Include" />
+            <e p="GameLoaderController.cs" t="Include" />
+            <e p="InventoryItemDataClass.cs" t="Include" />
+            <e p="SaveAndLoadSystem.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Menu" t="Include">
+          <e p="NewMenu" t="Include">
+            <e p="ORGmenu" t="Include">
+              <e p="Transition" t="Include">
+                <e p="TapToPlayController.cs" t="Include" />
               </e>
             </e>
           </e>
