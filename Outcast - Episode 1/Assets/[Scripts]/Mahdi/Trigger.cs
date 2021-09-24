@@ -38,10 +38,7 @@ public class Trigger : MonoBehaviour
         {
             return;
         }
-
-        if (SceneName == "Scene 2")
-            Controller.GetComponent<Scene2>().CheckTriggerExit(this.name);
-
+        
 
         if (SceneName == "Scene 3-1 FF - Dream")
             Controller.GetComponent<Scene3Dream>().CheckTriggerExit(this.name);

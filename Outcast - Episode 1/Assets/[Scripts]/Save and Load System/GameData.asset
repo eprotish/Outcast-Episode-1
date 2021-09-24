@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8d4506dcc506ae41bcbc8bcff7f7948, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  CurrentSceneName: Scene 3 FF
+  CurrentSceneName: Scene 4-1 VIP Room - Dream
   RespawnPoint: 0
   FaceRight: 1
   isOnCanvas: 1
@@ -62,8 +62,8 @@ MonoBehaviour:
     ItemSprite: {fileID: 21300000, guid: ea13fe5d34583304fb9e1b8368c04238, type: 3}
     BackDocument: {fileID: 0}
     hasViewed: 0
-  - ItemId: Book
-    ItemName: Book
+  - ItemId: "\u06A9\u062A\u0627\u0628"
+    ItemName: "\u06A9\u062A\u0627\u0628"
     isDocument: 1
     DocumentName: "\u06A9\u062A\u0627\u0628"
     ShortInfo: "\u0639\u06A9\u0633 \u064A\u06A9 \u0633\u0631\u064A \u0627\u0641\u0631\u0627\u062F
@@ -73,9 +73,28 @@ MonoBehaviour:
     ItemSprite: {fileID: 21300000, guid: a089820cb34348f41920e639e2798132, type: 3}
     BackDocument: {fileID: 21300000, guid: a089820cb34348f41920e639e2798132, type: 3}
     hasViewed: 0
+  - ItemId: book
+    ItemName: book
+    isDocument: 0
+    DocumentName: 
+    ShortInfo: 
+    MainInfo: 
+    ItemSprite: {fileID: 21300000, guid: a089820cb34348f41920e639e2798132, type: 3}
+    BackDocument: {fileID: 21300000, guid: a089820cb34348f41920e639e2798132, type: 3}
+    hasViewed: 0
+  - ItemId: "\u0631\u0648\u0632\u0646\u0627\u0645\u0647"
+    ItemName: "\u0631\u0648\u0632\u0646\u0627\u0645\u0647"
+    isDocument: 1
+    DocumentName: "\u0631\u0648\u0632\u0646\u0627\u0645\u0647"
+    ShortInfo: 
+    MainInfo: 
+    ItemSprite: {fileID: 21300000, guid: a089820cb34348f41920e639e2798132, type: 3}
+    BackDocument: {fileID: 21300000, guid: a089820cb34348f41920e639e2798132, type: 3}
+    hasViewed: 0
   gameEvents: []
   itemIds:
-  - "\u06A9\u062A\u0627\u0628"
+  - BookR
+  - Tape
   missions: []
   currentMission: 
   currentMissionIndex: 0

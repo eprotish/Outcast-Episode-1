@@ -8,9 +8,7 @@ public class Scene2 : MonoBehaviour
 {
 
     private int timeEnter;
-
     [SerializeField] private GameObject _Tutorail;
-
     private Step _step;
 
     [SerializeField] private GameObject bird;
@@ -19,13 +17,7 @@ public class Scene2 : MonoBehaviour
     [Range(0,1)] [SerializeField] private float VolumeBird = 0.5f;
     [SerializeField] private float birdSpeed;
     private bool CanbirdRun;
-
-
-    [SerializeField] private AudioClip SoundFuseInPlace;
-    [SerializeField] [Range(0, 1)] private float VolumeFuseInPlace = 0.5f;
-    [SerializeField] private AudioClip SoundFuseButton;
-    [SerializeField] [Range(0, 1)] private float VolumeFuseButton = 0.5f;
-
+    
 
     [SerializeField] private AudioClip SoundCarEngine;
     [SerializeField] [Range(0, 1)] private float VolumeCarEngine = 0.5f;
@@ -46,23 +38,16 @@ public class Scene2 : MonoBehaviour
 
     //
     [SerializeField] private Light2D [] _lights;
-    [SerializeField] private float [] IntensityValues;
     [SerializeField] private Light2D MainLight;
 
     // fuse box
-    [SerializeField] private GameObject FuseBox;
-    [SerializeField] private GameObject FusePlace;
-    [SerializeField] private Sprite CloseFuseBox;
-    [SerializeField] private Sprite OpenFuseBox;
-    [SerializeField] private GameObject PanelFuseBox;
-    [SerializeField] private GameObject [] fuseBoxObjs;
-    [SerializeField] private Sprite greenLight;
-    [SerializeField] private GameObject fuse2Item;
+
     [SerializeField] private GameObject WindowLight;
     [SerializeField] private GameObject LightZargMotel;
     [SerializeField] private GameObject LightMotel2;
-
-
+    
+    [SerializeField] private GameObject fuse2Item;
+    
     [SerializeField] private GameObject Lida;
     [SerializeField] private GameObject TriggerLida;
     [SerializeField] private Animator Margin;
@@ -133,28 +118,6 @@ public class Scene2 : MonoBehaviour
             }
         }
 
-        //fuse in place
-        if(_step.Steps[9])
-        {
-            fuseBoxObjs[0].SetActive(true);
-            fuseBoxObjs[1].GetComponent<Image>().sprite = greenLight;
-            FuseBox.transform.GetChild(0).transform.GetChild(3).gameObject.SetActive(true);
-            FuseBox.transform.GetChild(0).transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = greenLight;
-        }
-
-        //button_fuse_on
-        if(_step.Steps[10])
-        {
-            AllLightOn();
-            fuseBoxObjs[2].SetActive(true);
-            fuseBoxObjs[3].SetActive(false);
-            FuseBox.transform.GetChild(0).transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = greenLight;
-            FuseBox.transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(false);
-            FuseBox.transform.GetChild(0).transform.GetChild(2).gameObject.SetActive(true);
-            FuseBox.transform.GetChild(0).transform.GetChild(3).gameObject.SetActive(true);
-        }
-
-
         if(_step.Steps[39])
         {
             Lida.SetActive(true);
@@ -163,8 +126,7 @@ public class Scene2 : MonoBehaviour
         #endregion
        
     }
-
-
+    
     IEnumerator WaitToBlackPanel () {
 
        yield return new WaitForSeconds(9);
@@ -184,8 +146,6 @@ public class Scene2 : MonoBehaviour
 
         }
     }
-
-
 
     void FixedUpdate()
     {
@@ -210,23 +170,6 @@ public class Scene2 : MonoBehaviour
         {
             DoTouch = true;
         }
-
-        if (name == "Interaction FuseBox" && FuseBox.transform.GetChild(0).gameObject.activeInHierarchy)
-        {
-            // Another Time
-            PanelFuseBox.SetActive(true);
-            FusePlace.SetActive(true);
-        }
-
-        if (name == "Interaction FuseBox" && !FuseBox.transform.GetChild(0).gameObject.activeInHierarchy && _step.Steps[7] && !_step.Steps[10])
-        {
-            // First Time
-            FuseBox.transform.GetChild(0).gameObject.SetActive(true);
-            FuseBox.transform.GetChild(1).gameObject.SetActive(false);
-            PanelFuseBox.SetActive(true);
-            FusePlace.SetActive(true);
-        }
-
     }
 
     public void CheckTrigger(string name)
@@ -283,15 +226,7 @@ public class Scene2 : MonoBehaviour
             MarginOpen();
         }
     }
-
-    public void CheckTriggerExit (string name)
-    {
-        if(name == "FuseBoxExit")
-        {
-            PanelFuseBox.SetActive(false);
-        }
-    }
-
+    
 
     private void BirdRun ()
     {
@@ -325,62 +260,8 @@ public class Scene2 : MonoBehaviour
 
         Soundplayer.Play();
     }
-
-    public void FuseCheck ()
-    {
-        if(_step.Steps[9])
-        {
-            fuseBoxObjs[0].SetActive(true);
-            fuseBoxObjs[1].GetComponent<Image>().sprite = greenLight;
-
-            FuseBox.transform.GetChild(0).transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = greenLight;
-            FuseBox.transform.GetChild(0).transform.GetChild(3).gameObject.SetActive(true);
-
-
-            PlaySound(SoundFuseInPlace, false, VolumeFuseInPlace);
-
-            _step.DoWork(9);
-        }
-    }
-
-    public void TryHandleFuse ()
-    {
-        if(_step.Steps[9])
-        {
-            fuseBoxObjs[2].gameObject.SetActive(true);
-            fuseBoxObjs[3].gameObject.SetActive(false);
-
-            FuseBox.transform.GetChild(0).transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = greenLight;
-            FuseBox.transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(false);
-            FuseBox.transform.GetChild(0).transform.GetChild(2).gameObject.SetActive(true);
-            FuseBox.transform.GetChild(0).transform.GetChild(3).gameObject.SetActive(true);
-
-            PlaySound(SoundFuseButton, false, VolumeFuseButton);
-
-            _step.DoWork(10);
-
-            PlaySound(SoundLightOff,false,VolumeLightOff);
-            FindObjectOfType<GameDataController>().gameData.SetGameEventAsFinished("TurnOnElectricity");
-            StartCoroutine(waitToClose(0.5f));
-           StartCoroutine(waitToLightCome(1f));
-        }
-    }
-
-    IEnumerator waitToClose (float WaitTime)
-    {
-        yield return new WaitForSeconds(WaitTime);
-        PanelFuseBox.SetActive(false);
-
-        GameObject.Find("Move Holder - New").GetComponent<Animator>().Play("MoveHolderAnimationOff");
-    }
-
-    IEnumerator waitToLightCome (float Waittime)
-    {
-        yield return new WaitForSeconds(Waittime);
-        AllLightOn();
-    }
-
-
+    
+    
     public void MarginOpen()
     {
         Margin.gameObject.SetActive(true);
@@ -512,20 +393,6 @@ public class Scene2 : MonoBehaviour
         LightMotel2.SetActive(false);
         MainLight.intensity = 0.05f;
     }
-
-    public void AllLightOn ()
-    {
-        for (int i = 0; i < _lights.Length; i++)
-        {
-            if (_lights[i] != null)
-                _lights[i].intensity = IntensityValues[i];
-        }
-
-        WindowLight.SetActive(true);
-        LightZargMotel.SetActive(true);
-        LightMotel2.SetActive(true);
-
-        MainLight.intensity = 0.4f;
-    } 
+    
 
 }

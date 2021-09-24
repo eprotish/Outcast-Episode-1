@@ -46,6 +46,8 @@ public class InteractionController : MonoBehaviour
     GameDataController gameData;
     PlayerMovement playermovment;
 
+    private InventoryManger _inventoryManger;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -61,6 +63,8 @@ public class InteractionController : MonoBehaviour
         //mahdi
         Controller = GameObject.Find("GameController");
         SceneName = SceneManager.GetActiveScene().name;
+
+        _inventoryManger = GameObject.FindObjectOfType<InventoryManger>();
         
          gameData = FindObjectOfType<GameDataController>();
         if (!gameData)
@@ -113,20 +117,20 @@ public class InteractionController : MonoBehaviour
                         {
                             if (itemImage == null)
                             {
-                                GameObject.FindObjectOfType<InventoryManger>().PanelNew
+                                _inventoryManger.PanelNew
                                     (this.name,GetComponent<SpriteRenderer>().sprite, "", false , gameObject);
 
                             }
                             else
                             {
-                                GameObject.FindObjectOfType<InventoryManger>().PanelNew
+                                _inventoryManger.PanelNew
                                     (this.name,itemImage, "", false , gameObject);
                             }       
 
                         }
                         else
                         {
-                            GameObject.FindObjectOfType<InventoryManger>().
+                            _inventoryManger.
                                 AddDocument(itemImage ,BackDoc, NameDoc, ShortInfo, MainInfo , gameObject);  
                            
                         }
@@ -138,9 +142,8 @@ public class InteractionController : MonoBehaviour
                     {
                         Controller.GetComponent<Scene2>().CheckTouch(this.name);
                     }
-                       
-
-                    if(SceneManager.GetActiveScene().name.Equals("Scene 3 FF"))
+                    
+                    if(SceneName.Equals("Scene 3 FF"))
                         Controller.GetComponent<Scene3>().CheckTouch(this.name);
 
                     if(SceneName == "Scene 4-1 VIP Room - Dream")
@@ -157,6 +160,9 @@ public class InteractionController : MonoBehaviour
 
                     if (SceneName == "Scene 3 SF")
                         Controller.GetComponent<Scene3SF>().CheckTouch(this.name);
+                    
+                    if (SceneName == "Storage")
+                        Controller.GetComponent<Storge>().CheckTouch(this.name);
 
                     #endregion
                 }

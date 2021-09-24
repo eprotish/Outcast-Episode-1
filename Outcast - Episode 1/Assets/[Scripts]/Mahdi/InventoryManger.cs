@@ -28,7 +28,7 @@ public class InventoryManger : MonoBehaviour
     [SerializeField] private GameObject info;
 
     // document
-    private Document [] documents = new Document[100];
+    //private Document [] documents = new Document[100];
     private int PageInDoc = 0;
     [SerializeField] private Text NameDocShower;
     [SerializeField] private Text NameDocShower2;
@@ -54,6 +54,8 @@ public class InventoryManger : MonoBehaviour
     [SerializeField] private Image SpriteItemNewShower;
     [SerializeField] private Text ShortInfoNewShower;
 
+    [SerializeField] private Sprite spBook;
+
     //[SerializeField] private GameObject BackGround;
 
     GameObject DestroyItem;
@@ -65,6 +67,10 @@ public class InventoryManger : MonoBehaviour
 
     private Animator moveHolder;
 
+    public List<Document> docs = new List<Document>();
+
+    private Document InDoc;
+    
     private void Start()
     {
         _step = GameObject.FindObjectOfType<Step>();
@@ -73,6 +79,37 @@ public class InventoryManger : MonoBehaviour
         inventoryBtnObj = GameObject.Find("Inventorybtn");
 
         moveHolder = GameObject.Find("Move Holder - New").GetComponent<Animator>();
+
+
+        #region GetData
+
+        for (int i = 0; i < gamedata.gameData.itemIds.Count; i++)
+        {
+
+            for (int j = 0; j < AllDocument.Length; j++)
+            {
+                if (gamedata.gameData.itemIds[i] == AllDocument[j].nameDocument)
+                {
+                  
+                    InDoc.nameDocument = AllDocument[j].nameDocument;
+                    InDoc.infoDocument = AllDocument[j].infoDocument;
+                    
+                    InDoc.ShortInfo = AllDocument[j].ShortInfo;
+                    InDoc.BackDoc = AllDocument[j].BackDoc;
+                    InDoc.ImageDocument = AllDocument[j].ImageDocument;
+                    
+                    docs.Add(InDoc);
+                    break;
+                    
+                }
+            }
+        
+        }
+
+        #endregion
+        
+        
+        DocumentShow();
     }
 
     public void AddItem (string itemName,Sprite itemImage)
@@ -123,6 +160,12 @@ public class InventoryManger : MonoBehaviour
 
         #endregion
 
+        
+        if (itemName == "book")
+        {
+            slots[numberItemInInvenory].GetComponent<drag_drop>().DontDarg = true;
+        }
+        
         inventory[numberItemInInvenory] = itemName;
         slots[numberItemInInvenory].name = itemName;
         slots[numberItemInInvenory].sprite = itemImage;
@@ -145,6 +188,10 @@ public class InventoryManger : MonoBehaviour
 
         // add to inventory
 
+        if (itemName == "book")
+        {
+            slots[numberItemInInvenory].GetComponent<drag_drop>().DontDarg = true;
+        }
         inventory[numberItemInInvenory] = itemName;
         slots[numberItemInInvenory].name = itemName;
         slots[numberItemInInvenory].sprite = itemImage;
@@ -176,16 +223,28 @@ public class InventoryManger : MonoBehaviour
            a.SetActive(false);
 
 
+        
+        for (int i = 0; i < docs.Count; i++)
+        {
+            if (docs[i].nameDocument == docTitle)
+            {
+                return;
+            }
+        }        
+
+        Document documents = new Document();
         numberDocInInventory++;
-        documents[numberDocInInventory].ShortInfo = docInfo;
-        documents[numberDocInInventory].nameDocument = docTitle;
-        documents[numberDocInInventory].ImageDocument = docImage;
-        documents[numberDocInInventory].infoDocument = MainInfo;
+        documents.ShortInfo = docInfo;
+        documents.nameDocument = docTitle;
+        documents.ImageDocument = docImage;
+        documents.infoDocument = MainInfo;
         GameDataController.instance.gameData.AddItem(docTitle);
-        documents[numberDocInInventory].BackDoc = Backdoc;
+        documents.BackDoc = Backdoc;
+        
+        docs.Add(documents);
 
 
-        Invoke("CloseInventoryByDelay", 0.5f);
+        //Invoke("CloseInventoryByDelay", 0.5f);
 
         if (numberDocInInventory == 1)
             PageInDoc = 1;
@@ -200,12 +259,6 @@ public class InventoryManger : MonoBehaviour
 
     public void AddDocumentFromLoad(Sprite docImage, Sprite Backdoc , string docTitle, string docInfo, string MainInfo)
     {
-        numberDocInInventory++;
-        documents[numberDocInInventory].infoDocument = docInfo;
-        documents[numberDocInInventory].nameDocument = docTitle;
-        documents[numberDocInInventory].ImageDocument = docImage;
-        documents[numberDocInInventory].infoDocument = MainInfo;
-        documents[numberDocInInventory].BackDoc = Backdoc;
 
         DocumentShow();
     }
@@ -242,7 +295,7 @@ public class InventoryManger : MonoBehaviour
         {
             RemoveItem("Fuse");
             GameObject.FindObjectOfType<Step>().DoWork(9);
-            GameObject.FindObjectOfType<Scene2>().FuseCheck();
+            GameObject.FindObjectOfType<Storge>().FuseCheck();
 
             Invoke("CloseInventoryByDelay", 0.5f);
         }
@@ -254,8 +307,9 @@ public class InventoryManger : MonoBehaviour
             RemoveItem("Tape");
             RemoveItem("BookR");
             AddDocument(AllDocument[0].ImageDocument, AllDocument[0].BackDoc, AllDocument[0].nameDocument, AllDocument[0].ShortInfo, AllDocument[0].infoDocument, null);
+            AddItem("book",spBook);
 
-            Invoke("CloseInventoryByDelay", 0.5f);
+          
 
         }
 
@@ -266,7 +320,8 @@ public class InventoryManger : MonoBehaviour
             RemoveItem("BookR");
             AddDocument(AllDocument[0].ImageDocument, AllDocument[0].BackDoc, AllDocument[0].nameDocument, AllDocument[0].ShortInfo, AllDocument[0].infoDocument, null);
 
-            Invoke("CloseInventoryByDelay", 0.5f);
+            AddItem("book",spBook);
+          
         }
 
 
@@ -373,9 +428,10 @@ public class InventoryManger : MonoBehaviour
         QI_Read.SetActive(false);
         inventoryBtnObj.SetActive(true);
     }
+    
     public void nextBtn()
     {
-        if (PageInDoc < numberDocInInventory)
+        if (PageInDoc < numberDocInInventory -1)
         {
             PageInDoc++;
         }
@@ -385,7 +441,7 @@ public class InventoryManger : MonoBehaviour
 
     public void backBtn()
     {
-        if (PageInDoc > 1)
+        if (PageInDoc > 0)
         {
             PageInDoc--;
         }
@@ -395,7 +451,9 @@ public class InventoryManger : MonoBehaviour
 
     private void DocumentShow()
     {
-        NumberShower.text = PageInDoc.ToString() + "/" + numberDocInInventory.ToString(); 
+        numberDocInInventory = docs.Count;
+        NumberShower.text = (PageInDoc +1 ).ToString() + "/" + numberDocInInventory.ToString(); 
+        
 
         if (numberDocInInventory == 0)
         {
@@ -410,14 +468,14 @@ public class InventoryManger : MonoBehaviour
         else
         {
             ImageShower2.color = normal_color;
-            ImageShower2.sprite = documents[PageInDoc].ImageDocument; 
+            ImageShower2.sprite = docs[PageInDoc].ImageDocument; 
             ReadButton.SetActive(true);
             ImageShower.color = normal_color;
-            NameDocShower.text = documents[PageInDoc].nameDocument;
-            NameDocShower2.text = documents[PageInDoc].nameDocument;
-            ShortInfoShower.text = documents[PageInDoc].ShortInfo;
-            MainInfoShower.text = documents[PageInDoc].infoDocument;
-            ImageShower.sprite = documents[PageInDoc].ImageDocument;
+            NameDocShower.text = docs[PageInDoc].nameDocument;
+            NameDocShower2.text = docs[PageInDoc].nameDocument;
+            ShortInfoShower.text = docs[PageInDoc].ShortInfo;
+            MainInfoShower.text = docs[PageInDoc].infoDocument;
+            ImageShower.sprite = docs[PageInDoc].ImageDocument;
         }
         
         
@@ -440,13 +498,13 @@ public class InventoryManger : MonoBehaviour
         if (ImageShower.transform.eulerAngles.y >= 90 && !isFront && !isChangeImage)
         {
             isChangeImage = true;
-            ImageShower.sprite = documents[PageInDoc].BackDoc;
+            ImageShower.sprite = docs[PageInDoc].BackDoc;
         }
 
         if (ImageShower.transform.eulerAngles.y <= 90 && isFront && !isChangeImage)
         {
             isChangeImage = true;
-            ImageShower.sprite = documents[PageInDoc].ImageDocument;
+            ImageShower.sprite = docs[PageInDoc].ImageDocument;
         }
 
     }
@@ -495,6 +553,34 @@ public class InventoryManger : MonoBehaviour
         InfoButton.SetActive(false);
 
         gamedata.gameData.isOnCanvas = false;     
+    }
+
+    public void ShowBookDoc()
+    {
+        info.SetActive(true);
+        
+        numberDocInInventory = docs.Count;
+        NumberShower.text = (PageInDoc +1 ).ToString() + "/" + numberDocInInventory.ToString();
+
+        for (int i = 0; i < docs.Count; i++)
+        {
+            if (docs[i].nameDocument == "روزنامه")
+            {
+                PageInDoc = i-1;
+                
+                ImageShower2.color = normal_color;
+                ImageShower2.sprite = docs[PageInDoc].ImageDocument; 
+                ReadButton.SetActive(true);
+                ImageShower.color = normal_color;
+                NameDocShower.text = docs[PageInDoc].nameDocument;
+                NameDocShower2.text = docs[PageInDoc].nameDocument;
+                ShortInfoShower.text = docs[PageInDoc].ShortInfo;
+                MainInfoShower.text = docs[PageInDoc].infoDocument;
+                ImageShower.sprite = docs[PageInDoc].ImageDocument;
+            }
+        }
+        
+       
     }
 }
 

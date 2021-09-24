@@ -2740,6 +2740,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _can: {fileID: 0}
+  DontDarg: 0
 --- !u!1 &7865944842098893350
 GameObject:
   m_ObjectHideFlags: 0
@@ -2874,13 +2875,24 @@ MonoBehaviour:
       \u0631\u0648\u0634\u0647"
     infoDocument: "\u06A9\u062A\u0627\u0628\u064A \u06A9\u0647 \u0628\u0627 \u0686\u0633\u0628
       \u062F\u0631\u0633\u062A\u0634 \u06A9\u0631\u062F\u0645"
+  - nameDocument: "\u0631\u0648\u0632\u0646\u0627\u0645\u0647"
+    ImageDocument: {fileID: 21300000, guid: fe02e0958f99d15429d95c717be8b92b, type: 3}
+    BackDoc: {fileID: 21300000, guid: f21892d90a27a9842a86cc759ff06c5b, type: 3}
+    ShortInfo: "\u0631\u0648\u0632\u0646\u0627\u0645\u0647 \u0627\u064A \u06A9\u0647
+      \u062A\u0648 \u0627\u062A\u0627\u0642\u0645 \u0628\u0648\u062F"
+    infoDocument: "\u0641\u06A9\u0631 \u06A9\u0646\u0645 \u0627\u064A\u0646 \u0631\u0648\u0632\u0646\u0627\u0645\u0647
+      \u0642\u0628\u0644\u0627 \u0646\u0628\u0648\u062F ..  \u062F\u0631 \u0647\u0631
+      \u0635\u0648\u0631\u062A \u0628\u0627\u064A\u062F \u0628\u0628\u064A\u0646\u0645
+      \u0686\u064A\u0647 "
   audioSource: {fileID: 1831528076}
   Speed: 3
   NewItemPanel: {fileID: 8125297803207342692}
   NameItemNewShower: {fileID: 2291302158904438685}
   SpriteItemNewShower: {fileID: 4638332966923830612}
   ShortInfoNewShower: {fileID: 0}
+  spBook: {fileID: 21300000, guid: a089820cb34348f41920e639e2798132, type: 3}
   OnQuickInventory: 0
+  docs: []
 --- !u!82 &1831528076
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3085,6 +3097,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _can: {fileID: 0}
+  DontDarg: 0
 --- !u!1 &7865944842237225033
 GameObject:
   m_ObjectHideFlags: 0
@@ -3352,6 +3365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _can: {fileID: 0}
+  DontDarg: 0
 --- !u!1 &7865944842528344718
 GameObject:
   m_ObjectHideFlags: 0
@@ -3708,6 +3722,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _can: {fileID: 0}
+  DontDarg: 0
 --- !u!1 &7865944843710290174
 GameObject:
   m_ObjectHideFlags: 0
@@ -3797,6 +3812,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _can: {fileID: 0}
+  DontDarg: 0
 --- !u!1 &7865944843730576272
 GameObject:
   m_ObjectHideFlags: 0
@@ -3886,6 +3902,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _can: {fileID: 0}
+  DontDarg: 0
 --- !u!1 &7865944843746480808
 GameObject:
   m_ObjectHideFlags: 0

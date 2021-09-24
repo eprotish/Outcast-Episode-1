@@ -16,6 +16,18 @@
               <e p="SettingsController.cs" t="Include" />
             </e>
           </e>
+          <e p="Menu" t="Include">
+            <e p="NewMenu" t="Include">
+              <e p="ORGmenu" t="Include">
+                <e p="Transition" t="Include">
+                  <e p="TapToPlayController.cs" t="Include" />
+                </e>
+              </e>
+            </e>
+            <e p="Tutorials" t="Include">
+              <e p="TutorialSliderController.cs" t="Include" />
+            </e>
+          </e>
         </e>
         <e p="[Scripts]" t="Include">
           <e p="AudioManagers" t="Include">
@@ -87,6 +99,7 @@
             <e p="Scene4VIP.cs" t="Include" />
             <e p="SFLong.cs" t="Include" />
             <e p="Step.cs" t="Include" />
+            <e p="Storge.cs" t="Include" />
             <e p="Text_Bubble.cs" t="Include" />
             <e p="Trigger.cs" t="Include" />
             <e p="Tutorail.cs" t="Include" />
@@ -127,15 +140,6 @@
             <e p="GameLoaderController.cs" t="Include" />
             <e p="InventoryItemDataClass.cs" t="Include" />
             <e p="SaveAndLoadSystem.cs" t="Include" />
-          </e>
-        </e>
-        <e p="Menu" t="Include">
-          <e p="NewMenu" t="Include">
-            <e p="ORGmenu" t="Include">
-              <e p="Transition" t="Include">
-                <e p="TapToPlayController.cs" t="Include" />
-              </e>
-            </e>
           </e>
         </e>
       </e>

@@ -175,13 +175,13 @@ MonoBehaviour:
   m_collider2D: {fileID: 1459895631}
   audioClip: {fileID: 0}
   textInfos: []
-  interactableIcon: {fileID: 1459895630}
+  interactableIcon: {fileID: 0}
   isAudio: 0
   isText: 0
   textFadeTime: 2
   isInTrigger: 1
   textBubble: {fileID: 0}
-  Controller: {fileID: 0}
+  Controller: {fileID: 369083173}
   itemImage: {fileID: 21300000, guid: fe02e0958f99d15429d95c717be8b92b, type: 3}
   IsDocument: 1
   BackDoc: {fileID: 21300000, guid: f21892d90a27a9842a86cc759ff06c5b, type: 3}
@@ -312,7 +312,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8, y: 6}
+  m_Size: {x: 10, y: 10}
   m_EdgeRadius: 0
 --- !u!212 &7233257
 SpriteRenderer:
@@ -353,9 +353,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -462620183
   m_SortingLayer: 5
-  m_SortingOrder: 5
+  m_SortingOrder: 20
   m_Sprite: {fileID: 21300000, guid: e80ff02e2d3415d44b6e2826cc365237, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.54901963, g: 0.54901963, b: 0.54901963, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4795,7 +4795,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 0
-    m_SensorSize: {x: 1.7787356, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -6277,6 +6277,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7804504230410735942, guid: 947c0da9c0d88b54eb1e03caeac70054,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 947c0da9c0d88b54eb1e03caeac70054, type: 3}
 --- !u!224 &1164852959 stripped
@@ -6666,7 +6671,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1207929290}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.688873, y: -0.41923887, z: -10}
+  m_LocalPosition: {x: -8.686077, y: -0.41923887, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 96404004}
@@ -12357,12 +12362,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 428f8e2d21c239146af44055c5c1e5f6, type: 3}
---- !u!1 &1459895630 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7005493328714836818, guid: 428f8e2d21c239146af44055c5c1e5f6,
-    type: 3}
-  m_PrefabInstance: {fileID: 1459895629}
-  m_PrefabAsset: {fileID: 0}
 --- !u!61 &1459895631 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 4528636112967617504, guid: 428f8e2d21c239146af44055c5c1e5f6,
@@ -14939,6 +14938,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3300194325330903998, guid: 3229fd995f9a2b24c8d2c0f4843ace65,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842328071673973890, guid: 3229fd995f9a2b24c8d2c0f4843ace65,
         type: 3}
       propertyPath: m_IsActive
       value: 0
